@@ -66,7 +66,7 @@ def test_input_guards(tmp_path: Path) -> None:
 def test_video_upload_streaming_guards_and_owner_scope(tmp_path: Path) -> None:
     settings = fixture_settings(tmp_path)
     settings = Settings(settings.database_path, settings.gallery_npz, settings.gallery_audit_csv,
-                        settings.model_version, tmp_path / "videos", None, Path("python"), 64, False)
+                        settings.model_version, tmp_path / "videos", None, Path("python"), 64, False, True)
     seed(settings)
     client = TestClient(create_app(settings))
     assert client.post("/api/v1/videos", files={"file": ("x.mp4", b"\x00\x00\x00\x18ftypisomDATA", "video/mp4")}).status_code == 401

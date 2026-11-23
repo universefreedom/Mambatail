@@ -41,6 +41,8 @@ The cached search remains `CACHED_RETRIEVAL_E2E`, not fresh image inference. In 
 
 The verified scope is frame-only: `TEMPORAL_EMA_DISABLED`, `TRACK_ID_UNVERIFIED`, and behavior `UNKNOWN`. Reference labels are never copied into a definitive uploaded-video behavior claim.
 
+Public anonymous video upload is disabled by default. Set `MAMBATAIL_PUBLIC_UPLOAD_ENABLED=1` only behind an appropriate authentication and abuse-control boundary; the local validation environment enabled it explicitly.
+
 ## Tests
 
 ```powershell

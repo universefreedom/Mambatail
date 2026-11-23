@@ -110,10 +110,13 @@ def create_app(settings: Settings | None = None) -> FastAPI:
                 "protected_research_release": "PUBLIC_RELEASE_BLOCKED",
                 "query_behavior_status": "UNKNOWN", "fuzzy_status": "GATED_DESCRIPTIVE_ONLY",
                 "fresh_image_inference": "NOT_EXPOSED",
-                "video_e2e": "FRAME_ONLY_PIPELINE_AVAILABLE" if settings.video_runner else "VIDEO_RUNNER_NOT_CONFIGURED"}
+                "video_e2e": "FRAME_ONLY_PIPELINE_AVAILABLE" if settings.video_runner else "VIDEO_RUNNER_NOT_CONFIGURED",
+                "public_video_upload": "ENABLED" if settings.public_upload_enabled else "DISABLED_PENDING_AUTH"}
 
     @app.post("/api/v1/videos", status_code=202)
     async def upload_video(response: Response, file: UploadFile = File(...), x_owner_id: str | None = Header(default=None)) -> dict:
+        if not settings.public_upload_enabled:
+            raise HTTPException(403, "video upload is disabled on this deployment")
         if not x_owner_id or len(x_owner_id) > 80:
             raise HTTPException(401, "owner header required")
         original = Path(file.filename or "").name

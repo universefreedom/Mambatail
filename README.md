@@ -53,7 +53,7 @@ The current public suite has three API/DB/security tests. Real model and browser
 
 ## Deployment
 
-The intended public URL is `https://freedom49032.kr`. Cloudflare public video E2E is currently blocked: the zone is delegated to Cloudflare, but no verified web DNS/Tunnel route or local Tunnel authority is available. Local video E2E does not substitute for that public gate. See [Cloudflare deployment](docs/deployment-cloudflare.md).
+The public read-only demonstration is live at `https://freedom49032.kr` through the existing dashboard-managed `mambatail-web` Tunnel. Root, health, case listing, and cached retrieval have been verified externally. Anonymous video upload is disabled by default until least-privilege authentication is implemented, so public upload-to-playback E2E is not claimed. Local real-video E2E evidence remains separate from this public deployment gate. See [Cloudflare deployment](docs/deployment-cloudflare.md).
 
 ## Evidence scope
 

@@ -41,6 +41,39 @@ CREATE TABLE IF NOT EXISTS system_event (
   timestamp TEXT NOT NULL,
   non_sensitive_details TEXT NOT NULL
 );
+CREATE TABLE IF NOT EXISTS video_job (
+  job_id TEXT PRIMARY KEY,
+  owner_id TEXT NOT NULL,
+  original_filename TEXT NOT NULL,
+  input_path TEXT NOT NULL,
+  input_sha256 TEXT NOT NULL,
+  input_size INTEGER NOT NULL,
+  media_metadata TEXT,
+  source_scope TEXT NOT NULL,
+  model_sha TEXT,
+  pipeline_version TEXT NOT NULL,
+  status TEXT NOT NULL,
+  processed_frames INTEGER NOT NULL DEFAULT 0,
+  detected_frames INTEGER NOT NULL DEFAULT 0,
+  pose_frames INTEGER NOT NULL DEFAULT 0,
+  clip_encoded_frames INTEGER NOT NULL DEFAULT 0,
+  error_code TEXT,
+  created_at TEXT NOT NULL,
+  started_at TEXT,
+  finished_at TEXT,
+  latency_ms REAL
+);
+CREATE TABLE IF NOT EXISTS video_artifact (
+  artifact_id TEXT PRIMARY KEY,
+  job_id TEXT NOT NULL REFERENCES video_job(job_id) ON DELETE CASCADE,
+  kind TEXT NOT NULL,
+  path TEXT NOT NULL,
+  sha256 TEXT NOT NULL,
+  byte_size INTEGER NOT NULL,
+  media_metadata TEXT NOT NULL,
+  created_at TEXT NOT NULL
+);
+CREATE INDEX IF NOT EXISTS idx_video_job_status ON video_job(status, created_at);
 """
 
 

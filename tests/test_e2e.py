@@ -61,3 +61,22 @@ def test_input_guards(tmp_path: Path) -> None:
     assert client.post("/api/v1/search", json={"query_case_id": "bad", "top_k": 5}).status_code == 422
     assert client.post("/api/v1/search", json={"query_case_id": "CASE_FFFFFFFFFFFFFFFF", "top_k": 5}).status_code == 404
     assert client.post("/api/v1/search", json={"query_case_id": "CASE_0000000000000000", "top_k": 99}).status_code == 422
+
+
+def test_video_upload_streaming_guards_and_owner_scope(tmp_path: Path) -> None:
+    settings = fixture_settings(tmp_path)
+    settings = Settings(settings.database_path, settings.gallery_npz, settings.gallery_audit_csv,
+                        settings.model_version, tmp_path / "videos", None, Path("python"), 64, False)
+    seed(settings)
+    client = TestClient(create_app(settings))
+    assert client.post("/api/v1/videos", files={"file": ("x.mp4", b"\x00\x00\x00\x18ftypisomDATA", "video/mp4")}).status_code == 401
+    headers = {"X-Owner-ID": "owner-a"}
+    assert client.post("/api/v1/videos", headers=headers, files={"file": ("../x.mp4", b"\x00\x00\x00\x18ftypisomDATA", "video/mp4")}).status_code == 415
+    assert client.post("/api/v1/videos", headers=headers, files={"file": ("x.mp4.exe", b"\x00\x00\x00\x18ftypisomDATA", "video/mp4")}).status_code == 415
+    assert client.post("/api/v1/videos", headers=headers, files={"file": ("x.mp4", b"not-an-mp4-container", "video/mp4")}).status_code == 415
+    assert client.post("/api/v1/videos", headers=headers, files={"file": ("x.mp4", b"\x00\x00\x00\x18ftypisom" + b"x" * 100, "video/mp4")}).status_code == 413
+    accepted = client.post("/api/v1/videos", headers=headers, files={"file": ("x.mp4", b"\x00\x00\x00\x18ftypisomDATA", "video/mp4")})
+    assert accepted.status_code == 202
+    job_id = accepted.json()["job_id"]
+    assert client.get(f"/api/v1/jobs/{job_id}", headers={"X-Owner-ID": "owner-b"}).status_code == 403
+    assert client.get(f"/api/v1/jobs/{job_id}/results", headers=headers).json()["status"] == "QUEUED"

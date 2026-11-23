@@ -1,6 +1,6 @@
 # MambaTail
 
-MambaTail is a CPU-first canine observation research portfolio. This public service demonstrates an evidence-bounded path from a browser request through FastAPI and SQLite to deterministic cosine retrieval over a separately mounted frozen CLIP RN50 gallery.
+MambaTail is a CPU-first canine observation research portfolio. It contains a cached-reference search and a separately gated real-video job path. The video path streams an authorized MP4 to a bounded private store, persists a SQLite job, runs a configured single CPU worker, and serves only the completed annotated artifact to the owning browser.
 
 The system reports technical observations and reference similarity. It does not diagnose health, emotion, pain, welfare, or adoption suitability. Reference labels are development-only `SOURCE_MANUAL_REFERENCE_ONLY`; similarity scores are uncalibrated cosine values, not probabilities.
 
@@ -8,6 +8,7 @@ The system reports technical observations and reference similarity. It does not 
 
 ```text
 Browser -> FastAPI -> SQLite metadata -> frozen 51-vector gallery -> Top-k JSON -> Browser
+Browser -> streaming MP4 upload -> SQLite job -> single worker -> configured private model runner -> H.264 artifact -> Browser
 ```
 
 The public repository intentionally excludes model weights, embeddings, datasets, raw images and videos, credentials, experiment outputs, and private databases. Operators mount those assets at runtime through environment variables.
@@ -18,7 +19,7 @@ The public repository intentionally excludes model weights, embeddings, datasets
 python -m venv .venv
 .venv\Scripts\python -m pip install -r requirements.txt
 Copy-Item .env.example .env
-# Set the three MAMBATAIL_* paths in .env to authorized local assets.
+# Set the MAMBATAIL_* paths in .env to authorized local assets and a compatible runner.
 .venv\Scripts\python -m app.bootstrap
 .venv\Scripts\python -m uvicorn app.main:create_app --factory --host 127.0.0.1 --port 8765
 ```
@@ -31,8 +32,14 @@ Open `http://127.0.0.1:8765`. API documentation is available at `/docs`.
 - `GET /api/v1/cases`: derived-only gallery metadata from SQLite.
 - `POST /api/v1/search`: deterministic cached-vector retrieval.
 - `GET /api/v1/system-status`: evidence and safety boundaries.
+- `POST /api/v1/videos`: bounded streaming MP4 upload; returns HTTP 202 and a durable job ID.
+- `GET /api/v1/jobs/{job_id}`: owner-scoped persistent job state.
+- `GET /api/v1/jobs/{job_id}/results`: derived result and artifact metadata.
+- `GET /api/v1/jobs/{job_id}/artifacts/{artifact_id}`: owner-scoped completed MP4.
 
-The demo request selects an existing frozen case vector. This is `CACHED_RETRIEVAL_E2E`, not fresh image inference. Fresh RN50 encoding and RTMPose execution remain separate, protected research paths.
+The cached search remains `CACHED_RETRIEVAL_E2E`, not fresh image inference. In the verified local private runtime, two distinct CC BY 4.0 videos completed real decode, Dog detector inference, RTMPose native17 inference, full-frame RN50 `encode_image` sampling, frozen 51-reference retrieval, H.264 encode/readback, SQLite persistence, and Edge playback. Model assets and the site-specific runner remain excluded from this public repository and must be mounted by an authorized operator.
+
+The verified scope is frame-only: `TEMPORAL_EMA_DISABLED`, `TRACK_ID_UNVERIFIED`, and behavior `UNKNOWN`. Reference labels are never copied into a definitive uploaded-video behavior claim.
 
 ## Tests
 
@@ -40,9 +47,11 @@ The demo request selects an existing frozen case vector. This is `CACHED_RETRIEV
 .venv\Scripts\python -m pytest -q
 ```
 
+The current public suite has three API/DB/security tests. Real model and browser evidence is kept outside the public repository because it contains local runtime paths and media receipts.
+
 ## Deployment
 
-The intended public URL is `https://freedom49032.kr`. A live badge or deployment claim is made only after DNS, TLS, root page, API, database-backed retrieval, and browser rendering all pass independently. See [Cloudflare deployment](docs/deployment-cloudflare.md).
+The intended public URL is `https://freedom49032.kr`. Cloudflare public video E2E is currently blocked: the zone is delegated to Cloudflare, but no verified web DNS/Tunnel route or local Tunnel authority is available. Local video E2E does not substitute for that public gate. See [Cloudflare deployment](docs/deployment-cloudflare.md).
 
 ## Evidence scope
 

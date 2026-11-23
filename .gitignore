@@ -1,0 +1,16 @@
+.env
+.venv/
+__pycache__/
+.pytest_cache/
+*.pyc
+*.sqlite3
+*.db
+*.npz
+*.pt
+*.pth
+*.onnx
+*.jpg
+*.jpeg
+*.png
+*.mp4
+runtime/

@@ -119,7 +119,8 @@ def create_app(settings: Settings | None = None) -> FastAPI:
                 "query_behavior_status": "LIMITED_EXPERT_ASSISTED_RECOMMENDATION", "fuzzy_status": "GATED_DESCRIPTIVE_ONLY",
                 "fresh_image_inference": "NOT_EXPOSED",
                 "video_e2e": "FRAME_ONLY_PIPELINE_AVAILABLE" if settings.video_runner else "VIDEO_RUNNER_NOT_CONFIGURED",
-                "public_video_upload": "ENABLED" if settings.public_upload_enabled else "DISABLED_PENDING_AUTH"}
+                "public_video_upload": "ENABLED" if settings.public_upload_enabled else "DISABLED_PENDING_AUTH",
+                "public_showcase_job_id": settings.public_showcase_job_id}
 
     @app.post("/api/v1/videos", status_code=202)
     async def upload_video(request: Request, response: Response, file: UploadFile = File(...)) -> dict:

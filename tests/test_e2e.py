@@ -69,14 +69,19 @@ def test_video_upload_streaming_guards_and_owner_scope(tmp_path: Path) -> None:
                         settings.model_version, tmp_path / "videos", None, Path("python"), 64, False, True)
     seed(settings)
     client = TestClient(create_app(settings))
-    assert client.post("/api/v1/videos", files={"file": ("x.mp4", b"\x00\x00\x00\x18ftypisomDATA", "video/mp4")}).status_code == 401
-    headers = {"X-Owner-ID": "owner-a"}
-    assert client.post("/api/v1/videos", headers=headers, files={"file": ("../x.mp4", b"\x00\x00\x00\x18ftypisomDATA", "video/mp4")}).status_code == 415
-    assert client.post("/api/v1/videos", headers=headers, files={"file": ("x.mp4.exe", b"\x00\x00\x00\x18ftypisomDATA", "video/mp4")}).status_code == 415
-    assert client.post("/api/v1/videos", headers=headers, files={"file": ("x.mp4", b"not-an-mp4-container", "video/mp4")}).status_code == 415
-    assert client.post("/api/v1/videos", headers=headers, files={"file": ("x.mp4", b"\x00\x00\x00\x18ftypisom" + b"x" * 100, "video/mp4")}).status_code == 413
-    accepted = client.post("/api/v1/videos", headers=headers, files={"file": ("x.mp4", b"\x00\x00\x00\x18ftypisomDATA", "video/mp4")})
+    assert client.post("/api/v1/videos", files={"file": ("../x.mp4", b"\x00\x00\x00\x18ftypisomDATA", "video/mp4")}).status_code == 415
+    assert client.post("/api/v1/videos", files={"file": ("x.mp4.exe", b"\x00\x00\x00\x18ftypisomDATA", "video/mp4")}).status_code == 415
+    assert client.post("/api/v1/videos", files={"file": ("x.mp4", b"not-an-mp4-container", "video/mp4")}).status_code == 415
+    assert client.post("/api/v1/videos", files={"file": ("x.mp4", b"\x00\x00\x00\x18ftypisom" + b"x" * 100, "video/mp4")}).status_code == 413
+    accepted = client.post("/api/v1/videos", files={"file": ("x.mp4", b"\x00\x00\x00\x18ftypisomDATA", "video/mp4")})
     assert accepted.status_code == 202
     job_id = accepted.json()["job_id"]
-    assert client.get(f"/api/v1/jobs/{job_id}", headers={"X-Owner-ID": "owner-b"}).status_code == 403
-    assert client.get(f"/api/v1/jobs/{job_id}/results", headers=headers).json()["status"] == "QUEUED"
+    other = TestClient(create_app(settings))
+    assert other.get(f"/api/v1/jobs/{job_id}").status_code == 403
+    assert client.get(f"/api/v1/jobs/{job_id}/results").json()["status"] == "QUEUED"
+    segments = client.get(f"/api/v1/jobs/{job_id}/segments")
+    assert segments.status_code == 200
+    assert segments.json()["segments"] == []
+    assert segments.json()["behavior_status"] == "UNKNOWN"
+    assert other.get(f"/api/v1/jobs/{job_id}/segments").status_code == 403
+    assert client.get(f"/api/v1/jobs/{job_id}/segments/SEG_0000").status_code == 404

@@ -73,6 +73,13 @@ CREATE TABLE IF NOT EXISTS video_artifact (
   media_metadata TEXT NOT NULL,
   created_at TEXT NOT NULL
 );
+CREATE TABLE IF NOT EXISTS video_segment (
+  job_id TEXT NOT NULL REFERENCES video_job(job_id) ON DELETE CASCADE,
+  segment_id TEXT NOT NULL,
+  segment_json TEXT NOT NULL,
+  created_at TEXT NOT NULL,
+  PRIMARY KEY (job_id, segment_id)
+);
 CREATE INDEX IF NOT EXISTS idx_video_job_status ON video_job(status, created_at);
 """
 

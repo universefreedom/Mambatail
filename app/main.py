@@ -115,11 +115,10 @@ def create_app(settings: Settings | None = None) -> FastAPI:
                 "public_video_upload": "ENABLED" if settings.public_upload_enabled else "DISABLED_PENDING_AUTH"}
 
     @app.post("/api/v1/videos", status_code=202)
-    async def upload_video(response: Response, file: UploadFile = File(...), x_owner_id: str | None = Header(default=None)) -> dict:
+    async def upload_video(request: Request, response: Response, file: UploadFile = File(...)) -> dict:
         if not settings.public_upload_enabled:
             raise HTTPException(403, "video upload is disabled on this deployment")
-        if not x_owner_id or len(x_owner_id) > 80:
-            raise HTTPException(401, "owner header required")
+        owner_id = request.cookies.get("mambatail_owner") or str(uuid4())
         original = Path(file.filename or "").name
         if original != (file.filename or "") or not original.lower().endswith(".mp4"):
             raise HTTPException(415, "safe .mp4 filename required")
@@ -145,40 +144,64 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         digest = sha256(input_path)
         with connect(settings.database_path) as db:
             db.execute("""INSERT INTO video_job(job_id,owner_id,original_filename,input_path,input_sha256,input_size,source_scope,pipeline_version,status,created_at) VALUES(?,?,?,?,?,?,?,'REAL_VIDEO_FRAME_ONLY_V1','QUEUED',?)""",
-                       (job_id, x_owner_id, original, str(input_path.resolve()), digest, size, "USER_AUTHORIZED_LOCAL_ONLY", utc_now()))
-        response.set_cookie("mambatail_owner", x_owner_id, httponly=True, samesite="strict")
+                       (job_id, owner_id, original, str(input_path.resolve()), digest, size, "ANONYMOUS_BROWSER_SESSION_DEMO_ONLY", utc_now()))
+        response.set_cookie("mambatail_owner", owner_id, httponly=True, secure=request.url.scheme == "https", samesite="strict")
         return {"job_id": job_id, "status": "QUEUED", "input_sha256": digest, "input_size": size}
 
     @app.get("/api/v1/jobs/{job_id}")
-    def get_job(job_id: str, x_owner_id: str | None = Header(default=None)) -> dict:
+    def get_job(job_id: str, request: Request) -> dict:
         with connect(settings.database_path) as db:
             row = db.execute("SELECT * FROM video_job WHERE job_id=?", (job_id,)).fetchone()
         if row is None:
             raise HTTPException(404, "job not found")
-        if not x_owner_id or row["owner_id"] != x_owner_id:
+        if not request.cookies.get("mambatail_owner") or row["owner_id"] != request.cookies.get("mambatail_owner"):
             raise HTTPException(403, "owner authorization required")
         result = dict(row)
         result.pop("input_path", None)
         return result
 
     @app.get("/api/v1/jobs/{job_id}/results")
-    def get_results(job_id: str, x_owner_id: str | None = Header(default=None)) -> dict:
+    def get_results(job_id: str, request: Request) -> dict:
         with connect(settings.database_path) as db:
             job = db.execute("SELECT owner_id,status,input_sha256 FROM video_job WHERE job_id=?", (job_id,)).fetchone()
             artifacts = db.execute("SELECT artifact_id,kind,sha256,byte_size,media_metadata FROM video_artifact WHERE job_id=?", (job_id,)).fetchall()
         if job is None:
             raise HTTPException(404, "job not found")
-        if not x_owner_id or job["owner_id"] != x_owner_id:
+        if not request.cookies.get("mambatail_owner") or job["owner_id"] != request.cookies.get("mambatail_owner"):
             raise HTTPException(403, "owner authorization required")
         return {"job_id": job_id, "status": job["status"], "input_sha256": job["input_sha256"], "behavior_status": "UNKNOWN", "temporal_ema": "DISABLED", "track_id": "UNVERIFIED", "artifacts": [dict(x) for x in artifacts]}
 
+    @app.get("/api/v1/jobs/{job_id}/segments")
+    def get_segments(job_id: str, request: Request) -> dict:
+        with connect(settings.database_path) as db:
+            job = db.execute("SELECT owner_id,status FROM video_job WHERE job_id=?", (job_id,)).fetchone()
+            rows = db.execute("SELECT segment_json FROM video_segment WHERE job_id=? ORDER BY segment_id", (job_id,)).fetchall()
+        if job is None:
+            raise HTTPException(404, "job not found")
+        if not request.cookies.get("mambatail_owner") or job["owner_id"] != request.cookies.get("mambatail_owner"):
+            raise HTTPException(403, "owner authorization required")
+        return {"job_id": job_id, "status": job["status"], "segments": [json.loads(row["segment_json"]) for row in rows], "behavior_status": "UNKNOWN", "interpretation": "FRAME_OBSERVATION_AND_REFERENCE_SIMILARITY_ONLY"}
+
+    @app.get("/api/v1/jobs/{job_id}/segments/{segment_id}")
+    def get_segment(job_id: str, segment_id: str, request: Request) -> dict:
+        with connect(settings.database_path) as db:
+            job = db.execute("SELECT owner_id FROM video_job WHERE job_id=?", (job_id,)).fetchone()
+            row = db.execute("SELECT segment_json FROM video_segment WHERE job_id=? AND segment_id=?", (job_id, segment_id)).fetchone()
+        if job is None:
+            raise HTTPException(404, "job not found")
+        if not request.cookies.get("mambatail_owner") or job["owner_id"] != request.cookies.get("mambatail_owner"):
+            raise HTTPException(403, "owner authorization required")
+        if row is None:
+            raise HTTPException(404, "segment not found")
+        return json.loads(row["segment_json"])
+
     @app.get("/api/v1/jobs/{job_id}/artifacts/{artifact_id}")
-    def get_artifact(job_id: str, artifact_id: str, request: Request, x_owner_id: str | None = Header(default=None)) -> FileResponse:
+    def get_artifact(job_id: str, artifact_id: str, request: Request) -> FileResponse:
         with connect(settings.database_path) as db:
             row = db.execute("""SELECT a.path,j.owner_id,j.status FROM video_artifact a JOIN video_job j ON j.job_id=a.job_id WHERE a.job_id=? AND a.artifact_id=?""", (job_id, artifact_id)).fetchone()
         if row is None:
             raise HTTPException(404, "artifact not found")
-        owner = x_owner_id or request.cookies.get("mambatail_owner")
+        owner = request.cookies.get("mambatail_owner")
         if not owner or row["owner_id"] != owner:
             raise HTTPException(403, "owner authorization required")
         if row["status"] != "COMPLETED":

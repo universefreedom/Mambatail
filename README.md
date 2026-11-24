@@ -11,7 +11,7 @@ Browser -> FastAPI -> SQLite metadata -> frozen 51-vector gallery -> Top-k JSON 
 Browser -> streaming MP4 upload -> SQLite job -> single worker -> configured private model runner -> H.264 artifact -> Browser
 ```
 
-The public repository intentionally excludes model weights, embeddings, datasets, raw images and videos, credentials, experiment outputs, and private databases. Operators mount those assets at runtime through environment variables.
+The public repository intentionally excludes model weights, embeddings, datasets, protected research images and videos, credentials, experiment outputs, and private databases. Four separately licensed CC0 gallery photographs are bundled for the public visual-reference demonstration and are recorded in the asset ledger. Operators mount private runtime assets through environment variables.
 
 ## Local run
 
@@ -66,3 +66,9 @@ V50-V55 establish bounded technical evidence, including a 51-reference frozen RN
 ## License and third-party assets
 
 No project-wide software license has been selected by the rights holder. Until that decision is made, this repository is `LICENSE_UNDECIDED`; no permission beyond applicable law is implied. Third-party datasets, model weights, and media are not redistributed.
+
+- [Third-party notices](THIRD_PARTY_NOTICES.md): bundled image attribution, legacy derived-media attribution, framework licenses, and redistribution boundaries.
+- [Model and checkpoint references](MODEL_AND_CHECKPOINT_REFERENCES.md): exact artifact identifiers, SHA-256 values, code licenses, dataset terms, and paper citations.
+- [Public image asset licenses](app/static/demo/public-gallery/ASSET_LICENSES.md): creator, Commons source, CC0 declaration, and local file SHA-256 for every bundled gallery image.
+
+Third-party terms remain controlling for their respective materials. A framework's code license is not treated as an automatic license for a trained checkpoint or its training data.

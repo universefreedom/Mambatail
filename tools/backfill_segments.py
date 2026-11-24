@@ -20,10 +20,12 @@ def main() -> None:
     parser.add_argument("--receipt", type=Path, required=True)
     args = parser.parse_args()
     payload = json.loads(args.receipt.read_text(encoding="utf-8"))
+    labels = json.loads((ROOT / "app/reference_labels.json").read_text(encoding="utf-8"))
     with connect(args.database) as db:
         job = db.execute("SELECT status FROM video_job WHERE job_id=?", (args.job_id,)).fetchone()
         if job is None or job["status"] != "COMPLETED":
             raise SystemExit("job must exist and be COMPLETED")
+        db.executemany("UPDATE reference_case SET reference_label=? WHERE case_id=?", [(label, case_id) for case_id, label in labels.items()])
         rows = db.execute("SELECT case_id,source_id,reference_label FROM reference_case").fetchall()
         segments = build_segments(payload, {row["case_id"]: dict(row) for row in rows})
         db.execute("DELETE FROM video_segment WHERE job_id=?", (args.job_id,))

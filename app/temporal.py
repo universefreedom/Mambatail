@@ -147,7 +147,7 @@ def build_segments(payload: dict[str, Any], reference_metadata: dict[str, dict[s
         if record:
             for rank, hit in enumerate(record["top5"][:3], 1):
                 meta = reference_metadata.get(hit["case_id"], {})
-                hits.append({"rank": rank, "case_id": hit["case_id"], "similarity": hit["cosine"], "reference_label": hit.get("reference_label") or meta.get("reference_label"), "source_id": hit.get("source_id", meta.get("source_id")), "sample_frame_index": int(record["frame_index"]), "label_authority": "SOURCE_MANUAL_REFERENCE_ONLY", "source_warning": "REFERENCE_SIMILARITY_NOT_BEHAVIOR_TRUTH", "evidence_tier": "RESEARCH_REFERENCE_METADATA", "public_image": None})
+                hits.append({"rank": rank, "case_id": hit["case_id"], "similarity": hit["cosine"], "reference_label": meta.get("reference_label") or hit.get("reference_label"), "source_id": hit.get("source_id", meta.get("source_id")), "sample_frame_index": int(record["frame_index"]), "label_authority": "SOURCE_MANUAL_REFERENCE_ONLY", "source_warning": "LIMITED_EXPERT_REVIEW_ASSISTANCE", "evidence_tier": "RESEARCH_REFERENCE_METADATA", "public_image": None})
         fuzzy = _fuzzy(features)
         source_ids = [x["source_id"] for x in hits if x["source_id"] is not None]
         warning = "SOURCE_CONCENTRATION_WARNING" if source_ids and len(set(source_ids)) == 1 else None

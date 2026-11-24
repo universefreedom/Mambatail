@@ -8,6 +8,7 @@ from uuid import uuid4
 
 from fastapi import FastAPI, File, Header, HTTPException, Request, Response, UploadFile
 from fastapi.responses import FileResponse, JSONResponse
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, ConfigDict, Field
 
 from app.database import connect, initialize
@@ -184,4 +185,5 @@ def create_app(settings: Settings | None = None) -> FastAPI:
             raise HTTPException(409, "artifact is not complete")
         return FileResponse(row["path"], media_type="video/mp4", filename="mambatail-annotated.mp4")
 
+    app.mount("/demo", StaticFiles(directory=Path(__file__).parent / "static" / "demo", html=True), name="precomputed-pose-demo")
     return app

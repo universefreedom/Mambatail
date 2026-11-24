@@ -215,4 +215,5 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         return FileResponse(row["path"], media_type="video/mp4", filename="mambatail-annotated.mp4")
 
     app.mount("/demo", StaticFiles(directory=Path(__file__).parent / "static" / "demo", html=True), name="precomputed-pose-demo")
+    app.mount("/presentation", StaticFiles(directory=Path(__file__).parent.parent / "presentation", html=True), name="presentation")
     return app

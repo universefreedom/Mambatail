@@ -1,0 +1,1070 @@
+{
+  "schema": "mambatail.segment-observation.v1",
+  "sample_id": "demo-walking-001",
+  "frame_count": 150,
+  "segment_count": 3,
+  "segments": [
+    {
+      "segment_id": "SEG_0000",
+      "start_time_sec": 0.0,
+      "end_time_sec": 4.0,
+      "time_authority": "APPROXIMATE_FROM_DECODED_FRAME_INDEX_AND_REPORTED_FPS",
+      "subject_identity_authority": "IDENTITY_NOT_BOUND",
+      "valid_pose_frames": 60,
+      "clip_encoded_frames": 1,
+      "clip_sampling_status": "SAMPLED",
+      "evidence_quality": "OBSERVED_FRAME_FEATURES_IDENTITY_NOT_BOUND",
+      "pose_observation": {
+        "valid_joint_ratio": 0.9990196078431371,
+        "normalized_pose_change_median": null,
+        "normalized_pose_change_std": null,
+        "valid_change_pairs": 0,
+        "motion_measurement_reason": "IDENTITY_NOT_BOUND_ACROSS_FRAMES",
+        "selection_policy": "HIGHEST_DETECTOR_SCORE_SLOT_PER_FRAME",
+        "subject_identity_authority": "IDENTITY_NOT_BOUND",
+        "query_pose_thumbnail": {
+          "schema": "AP10K_NATIVE17",
+          "coordinates": [
+            {
+              "x": 0.8741006255149841,
+              "y": 0.0,
+              "confidence": 0.8630899786949158
+            },
+            {
+              "x": 0.8597121834754944,
+              "y": 0.0071942186914384365,
+              "confidence": 0.9517784714698792
+            },
+            {
+              "x": 0.8776978254318237,
+              "y": 0.05035974830389023,
+              "confidence": 0.7727490663528442
+            },
+            {
+              "x": 0.705035924911499,
+              "y": 0.053956858813762665,
+              "confidence": 0.9756139516830444
+            },
+            {
+              "x": 0.03237409144639969,
+              "y": 0.2949639558792114,
+              "confidence": 0.8477829098701477
+            },
+            {
+              "x": 0.5899280309677124,
+              "y": 0.40647488832473755,
+              "confidence": 0.8421781659126282
+            },
+            {
+              "x": 0.6007194519042969,
+              "y": 0.4568344056606293,
+              "confidence": 0.5564755797386169
+            },
+            {
+              "x": 0.6474819779396057,
+              "y": 0.48920851945877075,
+              "confidence": 0.5017682313919067
+            },
+            {
+              "x": 0.744604229927063,
+              "y": 0.3381294906139374,
+              "confidence": 0.9089490175247192
+            },
+            {
+              "x": 0.8597121834754944,
+              "y": 0.3920862376689911,
+              "confidence": 0.8367404341697693
+            },
+            {
+              "x": 1.0,
+              "y": 0.43884897232055664,
+              "confidence": 1.0
+            },
+            {
+              "x": 0.1151079386472702,
+              "y": 0.5251798033714294,
+              "confidence": 0.6601794362068176
+            },
+            {
+              "x": 0.0,
+              "y": 0.6402877569198608,
+              "confidence": 0.5120025277137756
+            },
+            {
+              "x": 0.1043166071176529,
+              "y": 0.6834532618522644,
+              "confidence": 0.45795416831970215
+            },
+            {
+              "x": 0.32374104857444763,
+              "y": 0.49280571937561035,
+              "confidence": 0.8598905801773071
+            },
+            {
+              "x": 0.2517986297607422,
+              "y": 0.6618704199790955,
+              "confidence": 0.613067626953125
+            },
+            {
+              "x": 0.3309352695941925,
+              "y": 0.7230216264724731,
+              "confidence": 0.6124436259269714
+            }
+          ],
+          "authority": "QUERY_OBSERVATION_VISUALIZATION",
+          "normalization": "VALID_JOINT_BBOX_MAX_AXIS"
+        }
+      },
+      "clip_reference_hits": [
+        {
+          "rank": 1,
+          "case_id": "CASE_16AD5B7F2CE97DED",
+          "similarity": 0.6157139539718628,
+          "reference_label": "walking",
+          "source_id": 8,
+          "sample_frame_index": 0,
+          "label_authority": "SOURCE_MANUAL_REFERENCE_ONLY",
+          "source_warning": "LIMITED_EXPERT_REVIEW_ASSISTANCE",
+          "evidence_tier": "RESEARCH_REFERENCE_METADATA",
+          "public_image": null
+        },
+        {
+          "rank": 2,
+          "case_id": "CASE_D207016AB425F210",
+          "similarity": 0.6075171232223511,
+          "reference_label": "pushing_skateboard",
+          "source_id": 21,
+          "sample_frame_index": 0,
+          "label_authority": "SOURCE_MANUAL_REFERENCE_ONLY",
+          "source_warning": "LIMITED_EXPERT_REVIEW_ASSISTANCE",
+          "evidence_tier": "RESEARCH_REFERENCE_METADATA",
+          "public_image": null
+        },
+        {
+          "rank": 3,
+          "case_id": "CASE_21451A8CCB26914F",
+          "similarity": 0.6072992086410522,
+          "reference_label": "turning_head",
+          "source_id": 19,
+          "sample_frame_index": 0,
+          "label_authority": "SOURCE_MANUAL_REFERENCE_ONLY",
+          "source_warning": "LIMITED_EXPERT_REVIEW_ASSISTANCE",
+          "evidence_tier": "RESEARCH_REFERENCE_METADATA",
+          "public_image": null
+        }
+      ],
+      "similarity_summary": {
+        "mean_top3_cosine": 0.6101767619450887,
+        "semantics": "REFERENCE_SIMILARITY_NOT_BEHAVIOR_PROBABILITY"
+      },
+      "fuzzy_observation": {
+        "rule_id": "POSE_OBSERVABILITY_MEMBERSHIP_WITH_IDENTITY_GATE",
+        "rule_version": "POSE_OBSERVABILITY_FUZZY_V3_IDENTITY_GATED",
+        "membership_design": {
+          "observability_low": "left_shoulder(full<=0.25, zero>=0.55)",
+          "observability_moderate": "triangle(0.25, 0.60, 0.90)",
+          "observability_high": "right_shoulder(zero<=0.60, full>=0.90)",
+          "authority": "TECHNICAL_DESIGN_NOT_EXPERT_VALIDATED"
+        },
+        "memberships": {
+          "observability_low": 0.0,
+          "observability_moderate": 0.0,
+          "observability_high": 1.0
+        },
+        "input_features": {
+          "valid_joint_ratio": 0.9990196078431371,
+          "normalized_pose_change_median": null,
+          "normalized_pose_change_std": null,
+          "valid_change_pairs": 0,
+          "motion_measurement_reason": "IDENTITY_NOT_BOUND_ACROSS_FRAMES",
+          "selection_policy": "HIGHEST_DETECTOR_SCORE_SLOT_PER_FRAME",
+          "subject_identity_authority": "IDENTITY_NOT_BOUND",
+          "query_pose_thumbnail": {
+            "schema": "AP10K_NATIVE17",
+            "coordinates": [
+              {
+                "x": 0.8741006255149841,
+                "y": 0.0,
+                "confidence": 0.8630899786949158
+              },
+              {
+                "x": 0.8597121834754944,
+                "y": 0.0071942186914384365,
+                "confidence": 0.9517784714698792
+              },
+              {
+                "x": 0.8776978254318237,
+                "y": 0.05035974830389023,
+                "confidence": 0.7727490663528442
+              },
+              {
+                "x": 0.705035924911499,
+                "y": 0.053956858813762665,
+                "confidence": 0.9756139516830444
+              },
+              {
+                "x": 0.03237409144639969,
+                "y": 0.2949639558792114,
+                "confidence": 0.8477829098701477
+              },
+              {
+                "x": 0.5899280309677124,
+                "y": 0.40647488832473755,
+                "confidence": 0.8421781659126282
+              },
+              {
+                "x": 0.6007194519042969,
+                "y": 0.4568344056606293,
+                "confidence": 0.5564755797386169
+              },
+              {
+                "x": 0.6474819779396057,
+                "y": 0.48920851945877075,
+                "confidence": 0.5017682313919067
+              },
+              {
+                "x": 0.744604229927063,
+                "y": 0.3381294906139374,
+                "confidence": 0.9089490175247192
+              },
+              {
+                "x": 0.8597121834754944,
+                "y": 0.3920862376689911,
+                "confidence": 0.8367404341697693
+              },
+              {
+                "x": 1.0,
+                "y": 0.43884897232055664,
+                "confidence": 1.0
+              },
+              {
+                "x": 0.1151079386472702,
+                "y": 0.5251798033714294,
+                "confidence": 0.6601794362068176
+              },
+              {
+                "x": 0.0,
+                "y": 0.6402877569198608,
+                "confidence": 0.5120025277137756
+              },
+              {
+                "x": 0.1043166071176529,
+                "y": 0.6834532618522644,
+                "confidence": 0.45795416831970215
+              },
+              {
+                "x": 0.32374104857444763,
+                "y": 0.49280571937561035,
+                "confidence": 0.8598905801773071
+              },
+              {
+                "x": 0.2517986297607422,
+                "y": 0.6618704199790955,
+                "confidence": 0.613067626953125
+              },
+              {
+                "x": 0.3309352695941925,
+                "y": 0.7230216264724731,
+                "confidence": 0.6124436259269714
+              }
+            ],
+            "authority": "QUERY_OBSERVATION_VISUALIZATION",
+            "normalization": "VALID_JOINT_BBOX_MAX_AXIS"
+          }
+        },
+        "missing_features": [
+          "identity_bound_motion_measurement"
+        ],
+        "output_category": "POSE_OBSERVABILITY_HIGH",
+        "explanation_text": "실제 유효 관절 관측률에 기술 설계 소속함수를 적용한 포즈 관찰 가능성입니다. 행동 확률이 아니며 제한적 전문가 보조 추천에 사용합니다.",
+        "probability": null,
+        "interpretation_scope": "POSE_OBSERVABILITY_LIMITED_EXPERT_ASSISTANCE",
+        "identity_caveat": "프레임 간 동일 개체 결속이 없으므로 속도·변위·행동 지속시간은 산출하지 않습니다."
+      },
+      "source_warning": null,
+      "review_assistance": "걷는 영상 공개 showcase의 SEG_0000 구간입니다. 실제 관절 관측률은 0.999이고 Fuzzy 관측 평가는 POSE_OBSERVABILITY_HIGH입니다. 연구 참고 사례 중 걷는 모습과 cosine 0.616로 가장 유사합니다. 공개 CC0 사진에서는 gallery-dirt-road가 cosine 0.586로 가장 가깝습니다. 이 결과는 행동 확정이나 진단이 아닌 유사도 기반 제한적 전문가 보조 추천입니다.",
+      "assistance_status": "MEASUREMENT_AND_SIMILARITY_BASED_EXPERT_REVIEW_ASSISTANCE",
+      "behavior_status": "LIMITED_EXPERT_ASSISTED_RECOMMENDATION",
+      "l4": "DISABLED",
+      "model_versions": {
+        "detector": "229F527CA88498E8894A778A62A878A322B4A3EA2CAE09EA537D34B7E907792B",
+        "rtmpose_native17": "1CFD1C86E0D9E5D5F95178BCD95EE9A4E8386A624CD3C57519F27FF58CAC7F28",
+        "clip_rn50": "AFEB0E10F9E5A86DA6080E35CF09123ACA3B358A0C3E3B6C78A7B63BC04B6762",
+        "gallery": "BB2048595B7042EDF15AE736A4E1E2E0D0300128479237C670574837B60D704C"
+      },
+      "missing_evidence": [
+        "TRACK_ID_AUTHORITY",
+        "EXPERT_BEHAVIOR_GROUND_TRUTH"
+      ],
+      "parent_job_or_sample_id": "ac54d369-72d6-4d40-b977-42dae87331ab",
+      "query_frame_indices": [
+        0
+      ],
+      "public_cc0_image_matches": [
+        {
+          "rank": 1,
+          "asset_id": "gallery-dirt-road",
+          "cosine_similarity": 0.5858851075172424,
+          "source_url": "https://commons.wikimedia.org/wiki/File:Dog_on_dirt_road.jpg",
+          "license": "CC0-1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "public_image_url": "/demo/public-gallery/gallery-dirt-road.jpg",
+          "scope": "ACTUAL_WALKING_SHOWCASE_FRAME_TO_CC0_RN50_SIMILARITY"
+        },
+        {
+          "rank": 2,
+          "asset_id": "gallery-sitting-forest",
+          "cosine_similarity": 0.515464723110199,
+          "source_url": "https://commons.wikimedia.org/wiki/File:Cute_dog_sitting_in_forest.jpg",
+          "license": "CC0-1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "public_image_url": "/demo/public-gallery/gallery-sitting-forest.jpg",
+          "scope": "ACTUAL_WALKING_SHOWCASE_FRAME_TO_CC0_RN50_SIMILARITY"
+        },
+        {
+          "rank": 3,
+          "asset_id": "gallery-warm-cloth",
+          "cosine_similarity": 0.48846983909606934,
+          "source_url": "https://commons.wikimedia.org/wiki/File:Dog_wearing_warm_cloth.jpg",
+          "license": "CC0-1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "public_image_url": "/demo/public-gallery/gallery-warm-cloth.jpg",
+          "scope": "ACTUAL_WALKING_SHOWCASE_FRAME_TO_CC0_RN50_SIMILARITY"
+        }
+      ],
+      "public_image_matching_status": "ACTUAL_CC0_TOP3_MATCHED",
+      "aggregate_statistics": {
+        "total_segments": 3,
+        "valid_segments": 3,
+        "insufficient_segments": 0,
+        "clip_sampled_segments": 3,
+        "pose_observability_mean": 0.9996732026143791,
+        "pose_observability_median": 1.0,
+        "pose_coverage_distribution": {
+          "values": [
+            0.9990196078431371,
+            1.0,
+            1.0
+          ],
+          "denominator": 3
+        }
+      },
+      "frame_start": 0,
+      "frame_end": 59,
+      "static_sample_id": "demo-walking-001",
+      "provenance": {
+        "job_id": "ac54d369-72d6-4d40-b977-42dae87331ab",
+        "input_sha256": "FB47E7093D231BC29226BAF23994C7D0BB38E2F7FBF22D11F29CA82BCDCABEA5",
+        "scope": "PRECOMPUTED_WALKING_SHOWCASE"
+      }
+    },
+    {
+      "segment_id": "SEG_0001",
+      "start_time_sec": 4.0,
+      "end_time_sec": 8.0,
+      "time_authority": "APPROXIMATE_FROM_DECODED_FRAME_INDEX_AND_REPORTED_FPS",
+      "subject_identity_authority": "IDENTITY_NOT_BOUND",
+      "valid_pose_frames": 60,
+      "clip_encoded_frames": 1,
+      "clip_sampling_status": "SAMPLED",
+      "evidence_quality": "OBSERVED_FRAME_FEATURES_IDENTITY_NOT_BOUND",
+      "pose_observation": {
+        "valid_joint_ratio": 1.0,
+        "normalized_pose_change_median": null,
+        "normalized_pose_change_std": null,
+        "valid_change_pairs": 0,
+        "motion_measurement_reason": "IDENTITY_NOT_BOUND_ACROSS_FRAMES",
+        "selection_policy": "HIGHEST_DETECTOR_SCORE_SLOT_PER_FRAME",
+        "subject_identity_authority": "IDENTITY_NOT_BOUND",
+        "query_pose_thumbnail": {
+          "schema": "AP10K_NATIVE17",
+          "coordinates": [
+            {
+              "x": 1.0,
+              "y": 0.2015504390001297,
+              "confidence": 0.8337881565093994
+            },
+            {
+              "x": 0.9224804639816284,
+              "y": 0.20542645454406738,
+              "confidence": 0.6783333420753479
+            },
+            {
+              "x": 0.9612402319908142,
+              "y": 0.3565892279148102,
+              "confidence": 0.6947189569473267
+            },
+            {
+              "x": 0.6976744532585144,
+              "y": 0.4341086447238922,
+              "confidence": 0.7086207866668701
+            },
+            {
+              "x": 0.0,
+              "y": 0.0,
+              "confidence": 0.9389194250106812
+            },
+            {
+              "x": 0.6395347714424133,
+              "y": 0.5620155334472656,
+              "confidence": 0.5475097298622131
+            },
+            {
+              "x": 0.5542634725570679,
+              "y": 0.7093023061752319,
+              "confidence": 0.4954468309879303
+            },
+            {
+              "x": 0.5581393241882324,
+              "y": 0.7403100728988647,
+              "confidence": 0.42030638456344604
+            },
+            {
+              "x": 0.4806201159954071,
+              "y": 0.5697675347328186,
+              "confidence": 0.8802428245544434
+            },
+            {
+              "x": 0.7093023061752319,
+              "y": 0.7868218421936035,
+              "confidence": 1.0
+            },
+            {
+              "x": 0.7868215441703796,
+              "y": 0.9612402319908142,
+              "confidence": 1.0
+            },
+            {
+              "x": 0.4379844665527344,
+              "y": 0.13178305327892303,
+              "confidence": 0.5176041722297668
+            },
+            {
+              "x": 0.3798448145389557,
+              "y": 0.577519416809082,
+              "confidence": 0.595145046710968
+            },
+            {
+              "x": 0.5542634725570679,
+              "y": 0.7558140754699707,
+              "confidence": 0.7365484237670898
+            },
+            {
+              "x": 0.07364338636398315,
+              "y": 0.387596994638443,
+              "confidence": 0.7156476974487305
+            },
+            {
+              "x": 0.2519379258155823,
+              "y": 0.6511628031730652,
+              "confidence": 0.8172128796577454
+            },
+            {
+              "x": 0.4457361698150635,
+              "y": 0.8062013983726501,
+              "confidence": 1.0
+            }
+          ],
+          "authority": "QUERY_OBSERVATION_VISUALIZATION",
+          "normalization": "VALID_JOINT_BBOX_MAX_AXIS"
+        }
+      },
+      "clip_reference_hits": [
+        {
+          "rank": 1,
+          "case_id": "CASE_16AD5B7F2CE97DED",
+          "similarity": 0.6539260745048523,
+          "reference_label": "walking",
+          "source_id": 8,
+          "sample_frame_index": 150,
+          "label_authority": "SOURCE_MANUAL_REFERENCE_ONLY",
+          "source_warning": "LIMITED_EXPERT_REVIEW_ASSISTANCE",
+          "evidence_tier": "RESEARCH_REFERENCE_METADATA",
+          "public_image": null
+        },
+        {
+          "rank": 2,
+          "case_id": "CASE_D207016AB425F210",
+          "similarity": 0.6470184326171875,
+          "reference_label": "pushing_skateboard",
+          "source_id": 21,
+          "sample_frame_index": 150,
+          "label_authority": "SOURCE_MANUAL_REFERENCE_ONLY",
+          "source_warning": "LIMITED_EXPERT_REVIEW_ASSISTANCE",
+          "evidence_tier": "RESEARCH_REFERENCE_METADATA",
+          "public_image": null
+        },
+        {
+          "rank": 3,
+          "case_id": "CASE_8A2CC3A2CB62FE55",
+          "similarity": 0.6450966596603394,
+          "reference_label": "running",
+          "source_id": 4,
+          "sample_frame_index": 150,
+          "label_authority": "SOURCE_MANUAL_REFERENCE_ONLY",
+          "source_warning": "LIMITED_EXPERT_REVIEW_ASSISTANCE",
+          "evidence_tier": "RESEARCH_REFERENCE_METADATA",
+          "public_image": null
+        }
+      ],
+      "similarity_summary": {
+        "mean_top3_cosine": 0.6486803889274597,
+        "semantics": "REFERENCE_SIMILARITY_NOT_BEHAVIOR_PROBABILITY"
+      },
+      "fuzzy_observation": {
+        "rule_id": "POSE_OBSERVABILITY_MEMBERSHIP_WITH_IDENTITY_GATE",
+        "rule_version": "POSE_OBSERVABILITY_FUZZY_V3_IDENTITY_GATED",
+        "membership_design": {
+          "observability_low": "left_shoulder(full<=0.25, zero>=0.55)",
+          "observability_moderate": "triangle(0.25, 0.60, 0.90)",
+          "observability_high": "right_shoulder(zero<=0.60, full>=0.90)",
+          "authority": "TECHNICAL_DESIGN_NOT_EXPERT_VALIDATED"
+        },
+        "memberships": {
+          "observability_low": 0.0,
+          "observability_moderate": 0.0,
+          "observability_high": 1.0
+        },
+        "input_features": {
+          "valid_joint_ratio": 1.0,
+          "normalized_pose_change_median": null,
+          "normalized_pose_change_std": null,
+          "valid_change_pairs": 0,
+          "motion_measurement_reason": "IDENTITY_NOT_BOUND_ACROSS_FRAMES",
+          "selection_policy": "HIGHEST_DETECTOR_SCORE_SLOT_PER_FRAME",
+          "subject_identity_authority": "IDENTITY_NOT_BOUND",
+          "query_pose_thumbnail": {
+            "schema": "AP10K_NATIVE17",
+            "coordinates": [
+              {
+                "x": 1.0,
+                "y": 0.2015504390001297,
+                "confidence": 0.8337881565093994
+              },
+              {
+                "x": 0.9224804639816284,
+                "y": 0.20542645454406738,
+                "confidence": 0.6783333420753479
+              },
+              {
+                "x": 0.9612402319908142,
+                "y": 0.3565892279148102,
+                "confidence": 0.6947189569473267
+              },
+              {
+                "x": 0.6976744532585144,
+                "y": 0.4341086447238922,
+                "confidence": 0.7086207866668701
+              },
+              {
+                "x": 0.0,
+                "y": 0.0,
+                "confidence": 0.9389194250106812
+              },
+              {
+                "x": 0.6395347714424133,
+                "y": 0.5620155334472656,
+                "confidence": 0.5475097298622131
+              },
+              {
+                "x": 0.5542634725570679,
+                "y": 0.7093023061752319,
+                "confidence": 0.4954468309879303
+              },
+              {
+                "x": 0.5581393241882324,
+                "y": 0.7403100728988647,
+                "confidence": 0.42030638456344604
+              },
+              {
+                "x": 0.4806201159954071,
+                "y": 0.5697675347328186,
+                "confidence": 0.8802428245544434
+              },
+              {
+                "x": 0.7093023061752319,
+                "y": 0.7868218421936035,
+                "confidence": 1.0
+              },
+              {
+                "x": 0.7868215441703796,
+                "y": 0.9612402319908142,
+                "confidence": 1.0
+              },
+              {
+                "x": 0.4379844665527344,
+                "y": 0.13178305327892303,
+                "confidence": 0.5176041722297668
+              },
+              {
+                "x": 0.3798448145389557,
+                "y": 0.577519416809082,
+                "confidence": 0.595145046710968
+              },
+              {
+                "x": 0.5542634725570679,
+                "y": 0.7558140754699707,
+                "confidence": 0.7365484237670898
+              },
+              {
+                "x": 0.07364338636398315,
+                "y": 0.387596994638443,
+                "confidence": 0.7156476974487305
+              },
+              {
+                "x": 0.2519379258155823,
+                "y": 0.6511628031730652,
+                "confidence": 0.8172128796577454
+              },
+              {
+                "x": 0.4457361698150635,
+                "y": 0.8062013983726501,
+                "confidence": 1.0
+              }
+            ],
+            "authority": "QUERY_OBSERVATION_VISUALIZATION",
+            "normalization": "VALID_JOINT_BBOX_MAX_AXIS"
+          }
+        },
+        "missing_features": [
+          "identity_bound_motion_measurement"
+        ],
+        "output_category": "POSE_OBSERVABILITY_HIGH",
+        "explanation_text": "실제 유효 관절 관측률에 기술 설계 소속함수를 적용한 포즈 관찰 가능성입니다. 행동 확률이 아니며 제한적 전문가 보조 추천에 사용합니다.",
+        "probability": null,
+        "interpretation_scope": "POSE_OBSERVABILITY_LIMITED_EXPERT_ASSISTANCE",
+        "identity_caveat": "프레임 간 동일 개체 결속이 없으므로 속도·변위·행동 지속시간은 산출하지 않습니다."
+      },
+      "source_warning": null,
+      "review_assistance": "걷는 영상 공개 showcase의 SEG_0001 구간입니다. 실제 관절 관측률은 1.000이고 Fuzzy 관측 평가는 POSE_OBSERVABILITY_HIGH입니다. 연구 참고 사례 중 걷는 모습과 cosine 0.654로 가장 유사합니다. 공개 CC0 사진에서는 gallery-dirt-road가 cosine 0.591로 가장 가깝습니다. 이 결과는 행동 확정이나 진단이 아닌 유사도 기반 제한적 전문가 보조 추천입니다.",
+      "assistance_status": "MEASUREMENT_AND_SIMILARITY_BASED_EXPERT_REVIEW_ASSISTANCE",
+      "behavior_status": "LIMITED_EXPERT_ASSISTED_RECOMMENDATION",
+      "l4": "DISABLED",
+      "model_versions": {
+        "detector": "229F527CA88498E8894A778A62A878A322B4A3EA2CAE09EA537D34B7E907792B",
+        "rtmpose_native17": "1CFD1C86E0D9E5D5F95178BCD95EE9A4E8386A624CD3C57519F27FF58CAC7F28",
+        "clip_rn50": "AFEB0E10F9E5A86DA6080E35CF09123ACA3B358A0C3E3B6C78A7B63BC04B6762",
+        "gallery": "BB2048595B7042EDF15AE736A4E1E2E0D0300128479237C670574837B60D704C"
+      },
+      "missing_evidence": [
+        "TRACK_ID_AUTHORITY",
+        "EXPERT_BEHAVIOR_GROUND_TRUTH"
+      ],
+      "parent_job_or_sample_id": "ac54d369-72d6-4d40-b977-42dae87331ab",
+      "query_frame_indices": [
+        150
+      ],
+      "public_cc0_image_matches": [
+        {
+          "rank": 1,
+          "asset_id": "gallery-dirt-road",
+          "cosine_similarity": 0.5911589860916138,
+          "source_url": "https://commons.wikimedia.org/wiki/File:Dog_on_dirt_road.jpg",
+          "license": "CC0-1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "public_image_url": "/demo/public-gallery/gallery-dirt-road.jpg",
+          "scope": "ACTUAL_WALKING_SHOWCASE_FRAME_TO_CC0_RN50_SIMILARITY"
+        },
+        {
+          "rank": 2,
+          "asset_id": "gallery-sitting-forest",
+          "cosine_similarity": 0.521966278553009,
+          "source_url": "https://commons.wikimedia.org/wiki/File:Cute_dog_sitting_in_forest.jpg",
+          "license": "CC0-1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "public_image_url": "/demo/public-gallery/gallery-sitting-forest.jpg",
+          "scope": "ACTUAL_WALKING_SHOWCASE_FRAME_TO_CC0_RN50_SIMILARITY"
+        },
+        {
+          "rank": 3,
+          "asset_id": "gallery-warm-cloth",
+          "cosine_similarity": 0.49216702580451965,
+          "source_url": "https://commons.wikimedia.org/wiki/File:Dog_wearing_warm_cloth.jpg",
+          "license": "CC0-1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "public_image_url": "/demo/public-gallery/gallery-warm-cloth.jpg",
+          "scope": "ACTUAL_WALKING_SHOWCASE_FRAME_TO_CC0_RN50_SIMILARITY"
+        }
+      ],
+      "public_image_matching_status": "ACTUAL_CC0_TOP3_MATCHED",
+      "aggregate_statistics": {
+        "total_segments": 3,
+        "valid_segments": 3,
+        "insufficient_segments": 0,
+        "clip_sampled_segments": 3,
+        "pose_observability_mean": 0.9996732026143791,
+        "pose_observability_median": 1.0,
+        "pose_coverage_distribution": {
+          "values": [
+            0.9990196078431371,
+            1.0,
+            1.0
+          ],
+          "denominator": 3
+        }
+      },
+      "frame_start": 60,
+      "frame_end": 119,
+      "static_sample_id": "demo-walking-001",
+      "provenance": {
+        "job_id": "ac54d369-72d6-4d40-b977-42dae87331ab",
+        "input_sha256": "FB47E7093D231BC29226BAF23994C7D0BB38E2F7FBF22D11F29CA82BCDCABEA5",
+        "scope": "PRECOMPUTED_WALKING_SHOWCASE"
+      }
+    },
+    {
+      "segment_id": "SEG_0002",
+      "start_time_sec": 8.0,
+      "end_time_sec": 10.0,
+      "time_authority": "APPROXIMATE_FROM_DECODED_FRAME_INDEX_AND_REPORTED_FPS",
+      "subject_identity_authority": "IDENTITY_NOT_BOUND",
+      "valid_pose_frames": 30,
+      "clip_encoded_frames": 1,
+      "clip_sampling_status": "SAMPLED",
+      "evidence_quality": "OBSERVED_FRAME_FEATURES_IDENTITY_NOT_BOUND",
+      "pose_observation": {
+        "valid_joint_ratio": 1.0,
+        "normalized_pose_change_median": null,
+        "normalized_pose_change_std": null,
+        "valid_change_pairs": 0,
+        "motion_measurement_reason": "IDENTITY_NOT_BOUND_ACROSS_FRAMES",
+        "selection_policy": "HIGHEST_DETECTOR_SCORE_SLOT_PER_FRAME",
+        "subject_identity_authority": "IDENTITY_NOT_BOUND",
+        "query_pose_thumbnail": {
+          "schema": "AP10K_NATIVE17",
+          "coordinates": [
+            {
+              "x": 0.9621210098266602,
+              "y": 0.0,
+              "confidence": 0.8675101399421692
+            },
+            {
+              "x": 0.9204545617103577,
+              "y": 0.03030298464000225,
+              "confidence": 0.7653387188911438
+            },
+            {
+              "x": 0.9621210098266602,
+              "y": 0.11742419004440308,
+              "confidence": 0.6658034324645996
+            },
+            {
+              "x": 0.8143938183784485,
+              "y": 0.041666604578495026,
+              "confidence": 0.7795148491859436
+            },
+            {
+              "x": 0.0,
+              "y": 0.17803028225898743,
+              "confidence": 1.0
+            },
+            {
+              "x": 0.6856058835983276,
+              "y": 0.37121206521987915,
+              "confidence": 0.771242082118988
+            },
+            {
+              "x": 0.7499998807907104,
+              "y": 0.4128786623477936,
+              "confidence": 0.7111011743545532
+            },
+            {
+              "x": 0.8068180680274963,
+              "y": 0.4848484992980957,
+              "confidence": 0.8191356062889099
+            },
+            {
+              "x": 0.799242377281189,
+              "y": 0.3939392864704132,
+              "confidence": 1.0
+            },
+            {
+              "x": 0.9696969985961914,
+              "y": 0.477272629737854,
+              "confidence": 1.0
+            },
+            {
+              "x": 1.0,
+              "y": 0.6060604453086853,
+              "confidence": 0.9994718432426453
+            },
+            {
+              "x": 0.27651509642601013,
+              "y": 0.3787878155708313,
+              "confidence": 0.8829542398452759
+            },
+            {
+              "x": 0.17803028225898743,
+              "y": 0.5303030014038086,
+              "confidence": 0.7497825026512146
+            },
+            {
+              "x": 0.2992423474788666,
+              "y": 0.5606059432029724,
+              "confidence": 0.9320822358131409
+            },
+            {
+              "x": 0.20454539358615875,
+              "y": 0.46969687938690186,
+              "confidence": 0.9095466136932373
+            },
+            {
+              "x": 0.11742419004440308,
+              "y": 0.6515151858329773,
+              "confidence": 0.97040194272995
+            },
+            {
+              "x": 0.27272725105285645,
+              "y": 0.7462121248245239,
+              "confidence": 1.0
+            }
+          ],
+          "authority": "QUERY_OBSERVATION_VISUALIZATION",
+          "normalization": "VALID_JOINT_BBOX_MAX_AXIS"
+        }
+      },
+      "clip_reference_hits": [
+        {
+          "rank": 1,
+          "case_id": "CASE_16AD5B7F2CE97DED",
+          "similarity": 0.6323608160018921,
+          "reference_label": "walking",
+          "source_id": 8,
+          "sample_frame_index": 299,
+          "label_authority": "SOURCE_MANUAL_REFERENCE_ONLY",
+          "source_warning": "LIMITED_EXPERT_REVIEW_ASSISTANCE",
+          "evidence_tier": "RESEARCH_REFERENCE_METADATA",
+          "public_image": null
+        },
+        {
+          "rank": 2,
+          "case_id": "CASE_99069271E88BFDA4",
+          "similarity": 0.6172428131103516,
+          "reference_label": "running",
+          "source_id": 8,
+          "sample_frame_index": 299,
+          "label_authority": "SOURCE_MANUAL_REFERENCE_ONLY",
+          "source_warning": "LIMITED_EXPERT_REVIEW_ASSISTANCE",
+          "evidence_tier": "RESEARCH_REFERENCE_METADATA",
+          "public_image": null
+        },
+        {
+          "rank": 3,
+          "case_id": "CASE_D207016AB425F210",
+          "similarity": 0.616570234298706,
+          "reference_label": "pushing_skateboard",
+          "source_id": 21,
+          "sample_frame_index": 299,
+          "label_authority": "SOURCE_MANUAL_REFERENCE_ONLY",
+          "source_warning": "LIMITED_EXPERT_REVIEW_ASSISTANCE",
+          "evidence_tier": "RESEARCH_REFERENCE_METADATA",
+          "public_image": null
+        }
+      ],
+      "similarity_summary": {
+        "mean_top3_cosine": 0.6220579544703165,
+        "semantics": "REFERENCE_SIMILARITY_NOT_BEHAVIOR_PROBABILITY"
+      },
+      "fuzzy_observation": {
+        "rule_id": "POSE_OBSERVABILITY_MEMBERSHIP_WITH_IDENTITY_GATE",
+        "rule_version": "POSE_OBSERVABILITY_FUZZY_V3_IDENTITY_GATED",
+        "membership_design": {
+          "observability_low": "left_shoulder(full<=0.25, zero>=0.55)",
+          "observability_moderate": "triangle(0.25, 0.60, 0.90)",
+          "observability_high": "right_shoulder(zero<=0.60, full>=0.90)",
+          "authority": "TECHNICAL_DESIGN_NOT_EXPERT_VALIDATED"
+        },
+        "memberships": {
+          "observability_low": 0.0,
+          "observability_moderate": 0.0,
+          "observability_high": 1.0
+        },
+        "input_features": {
+          "valid_joint_ratio": 1.0,
+          "normalized_pose_change_median": null,
+          "normalized_pose_change_std": null,
+          "valid_change_pairs": 0,
+          "motion_measurement_reason": "IDENTITY_NOT_BOUND_ACROSS_FRAMES",
+          "selection_policy": "HIGHEST_DETECTOR_SCORE_SLOT_PER_FRAME",
+          "subject_identity_authority": "IDENTITY_NOT_BOUND",
+          "query_pose_thumbnail": {
+            "schema": "AP10K_NATIVE17",
+            "coordinates": [
+              {
+                "x": 0.9621210098266602,
+                "y": 0.0,
+                "confidence": 0.8675101399421692
+              },
+              {
+                "x": 0.9204545617103577,
+                "y": 0.03030298464000225,
+                "confidence": 0.7653387188911438
+              },
+              {
+                "x": 0.9621210098266602,
+                "y": 0.11742419004440308,
+                "confidence": 0.6658034324645996
+              },
+              {
+                "x": 0.8143938183784485,
+                "y": 0.041666604578495026,
+                "confidence": 0.7795148491859436
+              },
+              {
+                "x": 0.0,
+                "y": 0.17803028225898743,
+                "confidence": 1.0
+              },
+              {
+                "x": 0.6856058835983276,
+                "y": 0.37121206521987915,
+                "confidence": 0.771242082118988
+              },
+              {
+                "x": 0.7499998807907104,
+                "y": 0.4128786623477936,
+                "confidence": 0.7111011743545532
+              },
+              {
+                "x": 0.8068180680274963,
+                "y": 0.4848484992980957,
+                "confidence": 0.8191356062889099
+              },
+              {
+                "x": 0.799242377281189,
+                "y": 0.3939392864704132,
+                "confidence": 1.0
+              },
+              {
+                "x": 0.9696969985961914,
+                "y": 0.477272629737854,
+                "confidence": 1.0
+              },
+              {
+                "x": 1.0,
+                "y": 0.6060604453086853,
+                "confidence": 0.9994718432426453
+              },
+              {
+                "x": 0.27651509642601013,
+                "y": 0.3787878155708313,
+                "confidence": 0.8829542398452759
+              },
+              {
+                "x": 0.17803028225898743,
+                "y": 0.5303030014038086,
+                "confidence": 0.7497825026512146
+              },
+              {
+                "x": 0.2992423474788666,
+                "y": 0.5606059432029724,
+                "confidence": 0.9320822358131409
+              },
+              {
+                "x": 0.20454539358615875,
+                "y": 0.46969687938690186,
+                "confidence": 0.9095466136932373
+              },
+              {
+                "x": 0.11742419004440308,
+                "y": 0.6515151858329773,
+                "confidence": 0.97040194272995
+              },
+              {
+                "x": 0.27272725105285645,
+                "y": 0.7462121248245239,
+                "confidence": 1.0
+              }
+            ],
+            "authority": "QUERY_OBSERVATION_VISUALIZATION",
+            "normalization": "VALID_JOINT_BBOX_MAX_AXIS"
+          }
+        },
+        "missing_features": [
+          "identity_bound_motion_measurement"
+        ],
+        "output_category": "POSE_OBSERVABILITY_HIGH",
+        "explanation_text": "실제 유효 관절 관측률에 기술 설계 소속함수를 적용한 포즈 관찰 가능성입니다. 행동 확률이 아니며 제한적 전문가 보조 추천에 사용합니다.",
+        "probability": null,
+        "interpretation_scope": "POSE_OBSERVABILITY_LIMITED_EXPERT_ASSISTANCE",
+        "identity_caveat": "프레임 간 동일 개체 결속이 없으므로 속도·변위·행동 지속시간은 산출하지 않습니다."
+      },
+      "source_warning": null,
+      "review_assistance": "걷는 영상 공개 showcase의 SEG_0002 구간입니다. 실제 관절 관측률은 1.000이고 Fuzzy 관측 평가는 POSE_OBSERVABILITY_HIGH입니다. 연구 참고 사례 중 걷는 모습과 cosine 0.632로 가장 유사합니다. 공개 CC0 사진에서는 gallery-dirt-road가 cosine 0.559로 가장 가깝습니다. 이 결과는 행동 확정이나 진단이 아닌 유사도 기반 제한적 전문가 보조 추천입니다.",
+      "assistance_status": "MEASUREMENT_AND_SIMILARITY_BASED_EXPERT_REVIEW_ASSISTANCE",
+      "behavior_status": "LIMITED_EXPERT_ASSISTED_RECOMMENDATION",
+      "l4": "DISABLED",
+      "model_versions": {
+        "detector": "229F527CA88498E8894A778A62A878A322B4A3EA2CAE09EA537D34B7E907792B",
+        "rtmpose_native17": "1CFD1C86E0D9E5D5F95178BCD95EE9A4E8386A624CD3C57519F27FF58CAC7F28",
+        "clip_rn50": "AFEB0E10F9E5A86DA6080E35CF09123ACA3B358A0C3E3B6C78A7B63BC04B6762",
+        "gallery": "BB2048595B7042EDF15AE736A4E1E2E0D0300128479237C670574837B60D704C"
+      },
+      "missing_evidence": [
+        "TRACK_ID_AUTHORITY",
+        "EXPERT_BEHAVIOR_GROUND_TRUTH"
+      ],
+      "parent_job_or_sample_id": "ac54d369-72d6-4d40-b977-42dae87331ab",
+      "query_frame_indices": [
+        299
+      ],
+      "public_cc0_image_matches": [
+        {
+          "rank": 1,
+          "asset_id": "gallery-dirt-road",
+          "cosine_similarity": 0.5587697625160217,
+          "source_url": "https://commons.wikimedia.org/wiki/File:Dog_on_dirt_road.jpg",
+          "license": "CC0-1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "public_image_url": "/demo/public-gallery/gallery-dirt-road.jpg",
+          "scope": "ACTUAL_WALKING_SHOWCASE_FRAME_TO_CC0_RN50_SIMILARITY"
+        },
+        {
+          "rank": 2,
+          "asset_id": "gallery-sitting-forest",
+          "cosine_similarity": 0.5108281373977661,
+          "source_url": "https://commons.wikimedia.org/wiki/File:Cute_dog_sitting_in_forest.jpg",
+          "license": "CC0-1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "public_image_url": "/demo/public-gallery/gallery-sitting-forest.jpg",
+          "scope": "ACTUAL_WALKING_SHOWCASE_FRAME_TO_CC0_RN50_SIMILARITY"
+        },
+        {
+          "rank": 3,
+          "asset_id": "gallery-warm-cloth",
+          "cosine_similarity": 0.49358057975769043,
+          "source_url": "https://commons.wikimedia.org/wiki/File:Dog_wearing_warm_cloth.jpg",
+          "license": "CC0-1.0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "public_image_url": "/demo/public-gallery/gallery-warm-cloth.jpg",
+          "scope": "ACTUAL_WALKING_SHOWCASE_FRAME_TO_CC0_RN50_SIMILARITY"
+        }
+      ],
+      "public_image_matching_status": "ACTUAL_CC0_TOP3_MATCHED",
+      "aggregate_statistics": {
+        "total_segments": 3,
+        "valid_segments": 3,
+        "insufficient_segments": 0,
+        "clip_sampled_segments": 3,
+        "pose_observability_mean": 0.9996732026143791,
+        "pose_observability_median": 1.0,
+        "pose_coverage_distribution": {
+          "values": [
+            0.9990196078431371,
+            1.0,
+            1.0
+          ],
+          "denominator": 3
+        }
+      },
+      "frame_start": 120,
+      "frame_end": 149,
+      "static_sample_id": "demo-walking-001",
+      "provenance": {
+        "job_id": "ac54d369-72d6-4d40-b977-42dae87331ab",
+        "input_sha256": "FB47E7093D231BC29226BAF23994C7D0BB38E2F7FBF22D11F29CA82BCDCABEA5",
+        "scope": "PRECOMPUTED_WALKING_SHOWCASE"
+      }
+    }
+  ]
+}

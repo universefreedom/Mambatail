@@ -34,6 +34,9 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     app = FastAPI(title="MambaTail Evidence Portfolio", version="1.0.0")
     worker = VideoWorker(settings)
 
+    def can_read_job(request: Request, job_id: str, owner_id: str) -> bool:
+        return job_id == settings.public_showcase_job_id or request.cookies.get("mambatail_owner") == owner_id
+
     @app.on_event("startup")
     def start_video_worker() -> None:
         worker.start()
@@ -54,6 +57,10 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     @app.get("/", include_in_schema=False)
     def home() -> FileResponse:
         return FileResponse(Path(__file__).parent / "static" / "index.html")
+
+    @app.get("/app.js", include_in_schema=False)
+    def frontend_script() -> FileResponse:
+        return FileResponse(Path(__file__).parent / "static" / "app.js", media_type="application/javascript")
 
     @app.get("/healthz")
     def healthz() -> dict:
@@ -154,7 +161,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
             row = db.execute("SELECT * FROM video_job WHERE job_id=?", (job_id,)).fetchone()
         if row is None:
             raise HTTPException(404, "job not found")
-        if not request.cookies.get("mambatail_owner") or row["owner_id"] != request.cookies.get("mambatail_owner"):
+        if not can_read_job(request, job_id, row["owner_id"]):
             raise HTTPException(403, "owner authorization required")
         result = dict(row)
         result.pop("input_path", None)
@@ -167,7 +174,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
             artifacts = db.execute("SELECT artifact_id,kind,sha256,byte_size,media_metadata FROM video_artifact WHERE job_id=?", (job_id,)).fetchall()
         if job is None:
             raise HTTPException(404, "job not found")
-        if not request.cookies.get("mambatail_owner") or job["owner_id"] != request.cookies.get("mambatail_owner"):
+        if not can_read_job(request, job_id, job["owner_id"]):
             raise HTTPException(403, "owner authorization required")
         return {"job_id": job_id, "status": job["status"], "input_sha256": job["input_sha256"], "behavior_status": "UNKNOWN", "temporal_ema": "DISABLED", "track_id": "UNVERIFIED", "artifacts": [dict(x) for x in artifacts]}
 
@@ -178,7 +185,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
             rows = db.execute("SELECT segment_json FROM video_segment WHERE job_id=? ORDER BY segment_id", (job_id,)).fetchall()
         if job is None:
             raise HTTPException(404, "job not found")
-        if not request.cookies.get("mambatail_owner") or job["owner_id"] != request.cookies.get("mambatail_owner"):
+        if not can_read_job(request, job_id, job["owner_id"]):
             raise HTTPException(403, "owner authorization required")
         return {"job_id": job_id, "status": job["status"], "segments": [json.loads(row["segment_json"]) for row in rows], "behavior_status": "UNKNOWN", "interpretation": "FRAME_OBSERVATION_AND_REFERENCE_SIMILARITY_ONLY"}
 
@@ -189,7 +196,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
             row = db.execute("SELECT segment_json FROM video_segment WHERE job_id=? AND segment_id=?", (job_id, segment_id)).fetchone()
         if job is None:
             raise HTTPException(404, "job not found")
-        if not request.cookies.get("mambatail_owner") or job["owner_id"] != request.cookies.get("mambatail_owner"):
+        if not can_read_job(request, job_id, job["owner_id"]):
             raise HTTPException(403, "owner authorization required")
         if row is None:
             raise HTTPException(404, "segment not found")
@@ -201,8 +208,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
             row = db.execute("""SELECT a.path,j.owner_id,j.status FROM video_artifact a JOIN video_job j ON j.job_id=a.job_id WHERE a.job_id=? AND a.artifact_id=?""", (job_id, artifact_id)).fetchone()
         if row is None:
             raise HTTPException(404, "artifact not found")
-        owner = request.cookies.get("mambatail_owner")
-        if not owner or row["owner_id"] != owner:
+        if not can_read_job(request, job_id, row["owner_id"]):
             raise HTTPException(403, "owner authorization required")
         if row["status"] != "COMPLETED":
             raise HTTPException(409, "artifact is not complete")

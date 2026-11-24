@@ -1,0 +1,527 @@
+{
+  "schema": "mambatail.segment-observation.v1",
+  "frame_count": 220,
+  "segment_count": 4,
+  "segments": [
+    {
+      "segment_id": "SEG_0000",
+      "frame_start": 0,
+      "frame_end": 59,
+      "start_time_sec": 0.0,
+      "end_time_sec": 3.933333333333333,
+      "time_authority": "UI_APPROXIMATION_FROM_FROZEN_PTS_FIELD_NOT_EVENT_TIMESTAMP",
+      "pose_observation": {
+        "valid_joint_ratio": 0.5127450980392156,
+        "normalized_pose_change_median": 0.0844853839332466,
+        "normalized_pose_change_std": 0.2230646767197062,
+        "valid_change_pairs": 33,
+        "selection_policy": "FROZEN_SINGLE_SKELETON_PER_FRAME_NO_TRACK_AUTHORITY",
+        "subject_identity_authority": "UNVERIFIED",
+        "query_pose_thumbnail": {
+          "schema": "AP10K_NATIVE17",
+          "coordinates": [
+            {
+              "x": 0.25431035867968854,
+              "y": 0.19396553801953278,
+              "confidence": 0.20764075219631195
+            },
+            {
+              "x": 0.31465511238801636,
+              "y": 0.08620690578645902,
+              "confidence": 0.19490426778793335
+            },
+            {
+              "x": 0.0,
+              "y": 0.3879310593011086,
+              "confidence": 0.24770380556583405
+            },
+            {
+              "x": 0.5905172644661475,
+              "y": 0.29741382831087504,
+              "confidence": 0.1283939778804779
+            },
+            {
+              "x": 1.0,
+              "y": 0.09482758966992214,
+              "confidence": 0.2984282076358795
+            },
+            {
+              "x": null,
+              "y": null,
+              "confidence": 0.09184465557336807
+            },
+            {
+              "x": 0.9741378479218689,
+              "y": 0.44827587996126433,
+              "confidence": 0.1722819209098816
+            },
+            {
+              "x": 0.11637941654427872,
+              "y": 0.5172413845048832,
+              "confidence": 0.1225687712430954
+            },
+            {
+              "x": null,
+              "y": null,
+              "confidence": 0.09860261529684067
+            },
+            {
+              "x": null,
+              "y": null,
+              "confidence": 0.08464784175157547
+            },
+            {
+              "x": null,
+              "y": null,
+              "confidence": 0.0668766126036644
+            },
+            {
+              "x": 0.9741378479218689,
+              "y": 0.2198276064078791,
+              "confidence": 0.15141908824443817
+            },
+            {
+              "x": 0.3534483405052131,
+              "y": 0.13793104256315164,
+              "confidence": 0.29545947909355164
+            },
+            {
+              "x": 0.04310331898957372,
+              "y": 0.1681034528932295,
+              "confidence": 0.3324586749076843
+            },
+            {
+              "x": 0.8103447537083278,
+              "y": 0.0,
+              "confidence": 0.27818673849105835
+            },
+            {
+              "x": 0.32327582974739344,
+              "y": 0.0086206922524416,
+              "confidence": 0.44239145517349243
+            },
+            {
+              "x": 0.025862152078131178,
+              "y": 0.025862068388346312,
+              "confidence": 0.46546709537506104
+            }
+          ],
+          "authority": "QUERY_OBSERVATION_VISUALIZATION",
+          "normalization": "VALID_JOINT_BBOX_MAX_AXIS",
+          "source_frame_index": 30
+        }
+      },
+      "fuzzy_observation": {
+        "rule_id": "POSE_VARIATION_MEMBERSHIP_WITH_COVERAGE_AND_IDENTITY_GATE",
+        "rule_version": "FRAME_OBSERVATION_FUZZY_V2_IDENTITY_GATED",
+        "memberships": {
+          "motion_low": 0.0,
+          "motion_moderate": 0.0,
+          "motion_high": 1.0,
+          "coverage_sufficient": 0.40686274509803916
+        },
+        "membership_design_authority": "TECHNICAL_DESIGN_NOT_EXPERT_VALIDATED",
+        "output_category": "POSE_VARIATION_HIGH",
+        "explanation_text": "실제 관절 좌표 변화량의 기술 설계 소속도에 따른 관측 변화 범주이며 전문가 검토 보조 계측입니다.",
+        "probability": null,
+        "interpretation_scope": "FRAME_LEVEL_POSE_VARIATION_MEASUREMENT",
+        "identity_caveat": "동일 개체 추적은 검증되지 않았습니다."
+      },
+      "clip_sampling_status": "NOT_SAMPLED",
+      "clip_reference_hits": [],
+      "source_warning": "NO_SEGMENT_CLIP_EMBEDDING",
+      "evidence_quality": "FROZEN_POSE_OBSERVATION_IDENTITY_UNVERIFIED",
+      "behavior_status": "UNKNOWN"
+    },
+    {
+      "segment_id": "SEG_0001",
+      "frame_start": 60,
+      "frame_end": 119,
+      "start_time_sec": 4.0,
+      "end_time_sec": 7.933333333333334,
+      "time_authority": "UI_APPROXIMATION_FROM_FROZEN_PTS_FIELD_NOT_EVENT_TIMESTAMP",
+      "pose_observation": {
+        "valid_joint_ratio": 0.9911764705882353,
+        "normalized_pose_change_median": 0.020614370036651782,
+        "normalized_pose_change_std": 0.06399595408446328,
+        "valid_change_pairs": 59,
+        "selection_policy": "FROZEN_SINGLE_SKELETON_PER_FRAME_NO_TRACK_AUTHORITY",
+        "subject_identity_authority": "UNVERIFIED",
+        "query_pose_thumbnail": {
+          "schema": "AP10K_NATIVE17",
+          "coordinates": [
+            {
+              "x": 0.16216216700816227,
+              "y": 0.004914040377914835,
+              "confidence": 0.9171988368034363
+            },
+            {
+              "x": 0.14250618479850713,
+              "y": 0.0,
+              "confidence": 0.6961250901222229
+            },
+            {
+              "x": 0.0,
+              "y": 0.08353805886753751,
+              "confidence": 0.8140903115272522
+            },
+            {
+              "x": 0.3759213545549209,
+              "y": 0.11547909719647868,
+              "confidence": 0.6185201406478882
+            },
+            {
+              "x": 0.9729730916999757,
+              "y": 0.511056613263059,
+              "confidence": 0.19486601650714874
+            },
+            {
+              "x": 0.6216216700816227,
+              "y": 0.1769041984909047,
+              "confidence": 0.5716995000839233
+            },
+            {
+              "x": 0.4029484421569493,
+              "y": 0.289926320323927,
+              "confidence": 0.7602506279945374
+            },
+            {
+              "x": 0.4029484421569493,
+              "y": 0.4398035208638053,
+              "confidence": 0.5603165030479431
+            },
+            {
+              "x": 0.555282618060284,
+              "y": 0.4127764332617769,
+              "confidence": 0.45774924755096436
+            },
+            {
+              "x": 0.3660933634500933,
+              "y": 0.44717453660517653,
+              "confidence": 0.44033756852149963
+            },
+            {
+              "x": 0.4668305188148317,
+              "y": 0.5724816249064828,
+              "confidence": 0.44001686573028564
+            },
+            {
+              "x": 0.9606880355806897,
+              "y": 0.4594595030734605,
+              "confidence": 0.44885188341140747
+            },
+            {
+              "x": 0.9582310602172334,
+              "y": 0.5307125954727141,
+              "confidence": 0.5472357869148254
+            },
+            {
+              "x": 0.9385750780075782,
+              "y": 0.5356266358506289,
+              "confidence": 0.14803950488567352
+            },
+            {
+              "x": 0.9582310602172334,
+              "y": 0.44717453660517653,
+              "confidence": 0.5945137739181519
+            },
+            {
+              "x": 0.9729730916999757,
+              "y": 0.5282556201092576,
+              "confidence": 0.544897735118866
+            },
+            {
+              "x": 1.0,
+              "y": 0.5331695708361704,
+              "confidence": 0.2731104791164398
+            }
+          ],
+          "authority": "QUERY_OBSERVATION_VISUALIZATION",
+          "normalization": "VALID_JOINT_BBOX_MAX_AXIS",
+          "source_frame_index": 90
+        }
+      },
+      "fuzzy_observation": {
+        "rule_id": "POSE_VARIATION_MEMBERSHIP_WITH_COVERAGE_AND_IDENTITY_GATE",
+        "rule_version": "FRAME_OBSERVATION_FUZZY_V2_IDENTITY_GATED",
+        "memberships": {
+          "motion_low": 0.6461876654449407,
+          "motion_moderate": 0.3538123345550594,
+          "motion_high": 0.0,
+          "coverage_sufficient": 1.0
+        },
+        "membership_design_authority": "TECHNICAL_DESIGN_NOT_EXPERT_VALIDATED",
+        "output_category": "POSE_VARIATION_LOW",
+        "explanation_text": "실제 관절 좌표 변화량의 기술 설계 소속도에 따른 관측 변화 범주이며 전문가 검토 보조 계측입니다.",
+        "probability": null,
+        "interpretation_scope": "FRAME_LEVEL_POSE_VARIATION_MEASUREMENT",
+        "identity_caveat": "동일 개체 추적은 검증되지 않았습니다."
+      },
+      "clip_sampling_status": "NOT_SAMPLED",
+      "clip_reference_hits": [],
+      "source_warning": "NO_SEGMENT_CLIP_EMBEDDING",
+      "evidence_quality": "FROZEN_POSE_OBSERVATION_IDENTITY_UNVERIFIED",
+      "behavior_status": "UNKNOWN"
+    },
+    {
+      "segment_id": "SEG_0002",
+      "frame_start": 120,
+      "frame_end": 179,
+      "start_time_sec": 8.0,
+      "end_time_sec": 11.933333333333334,
+      "time_authority": "UI_APPROXIMATION_FROM_FROZEN_PTS_FIELD_NOT_EVENT_TIMESTAMP",
+      "pose_observation": {
+        "valid_joint_ratio": 0.9990196078431373,
+        "normalized_pose_change_median": 0.02245944294170226,
+        "normalized_pose_change_std": 0.10173934775126484,
+        "valid_change_pairs": 59,
+        "selection_policy": "FROZEN_SINGLE_SKELETON_PER_FRAME_NO_TRACK_AUTHORITY",
+        "subject_identity_authority": "UNVERIFIED",
+        "query_pose_thumbnail": {
+          "schema": "AP10K_NATIVE17",
+          "coordinates": [
+            {
+              "x": 0.05882353392614315,
+              "y": 0.2659846951645865,
+              "confidence": 0.6929019093513489
+            },
+            {
+              "x": 0.028132974466129265,
+              "y": 0.3120204576101737,
+              "confidence": 0.5476739406585693
+            },
+            {
+              "x": 0.0,
+              "y": 0.409207229233551,
+              "confidence": 0.8505108952522278
+            },
+            {
+              "x": 0.26086960192125086,
+              "y": 0.2685422034140375,
+              "confidence": 0.6088640689849854
+            },
+            {
+              "x": 0.7953964237554413,
+              "y": 0.02557546621667824,
+              "confidence": 0.4163097143173218
+            },
+            {
+              "x": 0.4552429916791383,
+              "y": 0.18670078826510075,
+              "confidence": 0.4113396406173706
+            },
+            {
+              "x": 0.3810741780229882,
+              "y": 0.3657288982929812,
+              "confidence": 0.4728285074234009
+            },
+            {
+              "x": 0.4347826187057957,
+              "y": 0.4705882714091452,
+              "confidence": 0.4733962118625641
+            },
+            {
+              "x": 0.45268540668525364,
+              "y": 0.39897704274687973,
+              "confidence": 0.5017345547676086
+            },
+            {
+              "x": 0.4808184578958165,
+              "y": 0.5089514323619457,
+              "confidence": 0.4565744996070862
+            },
+            {
+              "x": 0.5268542203414037,
+              "y": 0.5703325512819736,
+              "confidence": 0.6275176405906677
+            },
+            {
+              "x": 0.820971813227686,
+              "y": 0.10230178812227936,
+              "confidence": 0.5006401538848877
+            },
+            {
+              "x": 0.9258312630882835,
+              "y": 0.028132974466129265,
+              "confidence": 0.4797931909561157
+            },
+            {
+              "x": 0.9923273985072133,
+              "y": 0.0,
+              "confidence": 0.45163995027542114
+            },
+            {
+              "x": 0.874680330654927,
+              "y": 0.27365729665737315,
+              "confidence": 0.6569651961326599
+            },
+            {
+              "x": 0.9590792540533148,
+              "y": 0.22506394921790132,
+              "confidence": 0.6036756038665771
+            },
+            {
+              "x": 1.0,
+              "y": 0.2838874831440445,
+              "confidence": 0.5039460062980652
+            }
+          ],
+          "authority": "QUERY_OBSERVATION_VISUALIZATION",
+          "normalization": "VALID_JOINT_BBOX_MAX_AXIS",
+          "source_frame_index": 150
+        }
+      },
+      "fuzzy_observation": {
+        "rule_id": "POSE_VARIATION_MEMBERSHIP_WITH_COVERAGE_AND_IDENTITY_GATE",
+        "rule_version": "FRAME_OBSERVATION_FUZZY_V2_IDENTITY_GATED",
+        "memberships": {
+          "motion_low": 0.5846852352765913,
+          "motion_moderate": 0.4153147647234087,
+          "motion_high": 0.0,
+          "coverage_sufficient": 1.0
+        },
+        "membership_design_authority": "TECHNICAL_DESIGN_NOT_EXPERT_VALIDATED",
+        "output_category": "POSE_VARIATION_LOW",
+        "explanation_text": "실제 관절 좌표 변화량의 기술 설계 소속도에 따른 관측 변화 범주이며 전문가 검토 보조 계측입니다.",
+        "probability": null,
+        "interpretation_scope": "FRAME_LEVEL_POSE_VARIATION_MEASUREMENT",
+        "identity_caveat": "동일 개체 추적은 검증되지 않았습니다."
+      },
+      "clip_sampling_status": "NOT_SAMPLED",
+      "clip_reference_hits": [],
+      "source_warning": "NO_SEGMENT_CLIP_EMBEDDING",
+      "evidence_quality": "FROZEN_POSE_OBSERVATION_IDENTITY_UNVERIFIED",
+      "behavior_status": "UNKNOWN"
+    },
+    {
+      "segment_id": "SEG_0003",
+      "frame_start": 180,
+      "frame_end": 219,
+      "start_time_sec": 12.0,
+      "end_time_sec": 14.6,
+      "time_authority": "UI_APPROXIMATION_FROM_FROZEN_PTS_FIELD_NOT_EVENT_TIMESTAMP",
+      "pose_observation": {
+        "valid_joint_ratio": 0.9926470588235294,
+        "normalized_pose_change_median": 0.024152054811132063,
+        "normalized_pose_change_std": 0.10320557194836817,
+        "valid_change_pairs": 39,
+        "selection_policy": "FROZEN_SINGLE_SKELETON_PER_FRAME_NO_TRACK_AUTHORITY",
+        "subject_identity_authority": "UNVERIFIED",
+        "query_pose_thumbnail": {
+          "schema": "AP10K_NATIVE17",
+          "coordinates": [
+            {
+              "x": 0.06199461375516552,
+              "y": 0.43935308289772645,
+              "confidence": 0.5596678853034973
+            },
+            {
+              "x": 0.032345022454545895,
+              "y": 0.4016172738316127,
+              "confidence": 0.24965402483940125
+            },
+            {
+              "x": 0.0,
+              "y": 0.5606469171022735,
+              "confidence": 0.4455013871192932
+            },
+            {
+              "x": 0.22911055048760517,
+              "y": 0.3989218048295441,
+              "confidence": 0.4348910450935364
+            },
+            {
+              "x": 0.9730459155495914,
+              "y": 0.14555256319731416,
+              "confidence": 0.4011528491973877
+            },
+            {
+              "x": 0.3719676825309931,
+              "y": 0.3234501110010319,
+              "confidence": 0.3203612267971039
+            },
+            {
+              "x": 0.3423180533822311,
+              "y": 0.5202156390340912,
+              "confidence": 0.3873249590396881
+            },
+            {
+              "x": 0.35849056460950407,
+              "y": 0.5822102149411144,
+              "confidence": 0.30437198281288147
+            },
+            {
+              "x": 0.5040431656549605,
+              "y": 0.42857143397830605,
+              "confidence": 0.15583650767803192
+            },
+            {
+              "x": 0.4070080982913229,
+              "y": 0.5687331727159101,
+              "confidence": 0.14768825471401215
+            },
+            {
+              "x": 0.45283023866735783,
+              "y": 0.6765498889989681,
+              "confidence": 0.16421188414096832
+            },
+            {
+              "x": 0.8274933145041349,
+              "y": 0.110512109588842,
+              "confidence": 0.2645200192928314
+            },
+            {
+              "x": 0.9191374438636353,
+              "y": 0.0,
+              "confidence": 0.24779227375984192
+            },
+            {
+              "x": 0.5471698370289269,
+              "y": 0.7008086558398775,
+              "confidence": 0.33925899863243103
+            },
+            {
+              "x": 0.8625337302644647,
+              "y": 0.35040434684400995,
+              "confidence": 0.22018106281757355
+            },
+            {
+              "x": 0.9973046066942161,
+              "y": 0.304582206467975,
+              "confidence": 0.35426899790763855
+            },
+            {
+              "x": 1.0,
+              "y": 0.39083554921590763,
+              "confidence": 0.19592474400997162
+            }
+          ],
+          "authority": "QUERY_OBSERVATION_VISUALIZATION",
+          "normalization": "VALID_JOINT_BBOX_MAX_AXIS",
+          "source_frame_index": 200
+        }
+      },
+      "fuzzy_observation": {
+        "rule_id": "POSE_VARIATION_MEMBERSHIP_WITH_COVERAGE_AND_IDENTITY_GATE",
+        "rule_version": "FRAME_OBSERVATION_FUZZY_V2_IDENTITY_GATED",
+        "memberships": {
+          "motion_low": 0.5282648396289312,
+          "motion_moderate": 0.4717351603710688,
+          "motion_high": 0.0,
+          "coverage_sufficient": 1.0
+        },
+        "membership_design_authority": "TECHNICAL_DESIGN_NOT_EXPERT_VALIDATED",
+        "output_category": "POSE_VARIATION_LOW",
+        "explanation_text": "실제 관절 좌표 변화량의 기술 설계 소속도에 따른 관측 변화 범주이며 전문가 검토 보조 계측입니다.",
+        "probability": null,
+        "interpretation_scope": "FRAME_LEVEL_POSE_VARIATION_MEASUREMENT",
+        "identity_caveat": "동일 개체 추적은 검증되지 않았습니다."
+      },
+      "clip_sampling_status": "NOT_SAMPLED",
+      "clip_reference_hits": [],
+      "source_warning": "NO_SEGMENT_CLIP_EMBEDDING",
+      "evidence_quality": "FROZEN_POSE_OBSERVATION_IDENTITY_UNVERIFIED",
+      "behavior_status": "UNKNOWN"
+    }
+  ]
+}

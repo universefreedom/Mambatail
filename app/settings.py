@@ -19,6 +19,7 @@ class Settings:
     max_video_bytes: int = 80 * 1024 * 1024
     worker_enabled: bool = False
     public_upload_enabled: bool = False
+    public_showcase_job_id: str | None = None
 
 
 def load_settings() -> Settings:
@@ -34,4 +35,5 @@ def load_settings() -> Settings:
         max_video_bytes=int(os.getenv("MAMBATAIL_MAX_VIDEO_BYTES", str(80 * 1024 * 1024))),
         worker_enabled=os.getenv("MAMBATAIL_VIDEO_WORKER", "0") == "1",
         public_upload_enabled=os.getenv("MAMBATAIL_PUBLIC_UPLOAD_ENABLED", "0") == "1",
+        public_showcase_job_id=os.getenv("MAMBATAIL_PUBLIC_SHOWCASE_JOB_ID") or None,
     )

@@ -102,7 +102,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
                 db.execute("INSERT INTO search_result VALUES (?,?,?,?,?)",
                            (request_id, case_id, rank, score, "UNCALIBRATED_COSINE_SIMILARITY"))
                 items.append({**dict(row), "rank": rank, "similarity_or_distance": score,
-                              "metric_type": "COSINE_SIMILARITY", "query_behavior_status": "UNKNOWN"})
+                              "metric_type": "COSINE_SIMILARITY", "query_behavior_status": "LIMITED_EXPERT_ASSISTED_RECOMMENDATION"})
             db.execute("INSERT INTO system_event VALUES (?,?,?,?,?)",
                        (str(uuid4()), "SEARCH", "PASS", observed_at,
                         json.dumps({"request_id": request_id, "result_count": len(items)})))
@@ -116,7 +116,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         return {"service": "MambaTail", "model_version": settings.model_version,
                 "scientific_status": "SCIENTIFIC_NO_PROMOTION",
                 "protected_research_release": "PUBLIC_RELEASE_BLOCKED",
-                "query_behavior_status": "UNKNOWN", "fuzzy_status": "GATED_DESCRIPTIVE_ONLY",
+                "query_behavior_status": "LIMITED_EXPERT_ASSISTED_RECOMMENDATION", "fuzzy_status": "GATED_DESCRIPTIVE_ONLY",
                 "fresh_image_inference": "NOT_EXPOSED",
                 "video_e2e": "FRAME_ONLY_PIPELINE_AVAILABLE" if settings.video_runner else "VIDEO_RUNNER_NOT_CONFIGURED",
                 "public_video_upload": "ENABLED" if settings.public_upload_enabled else "DISABLED_PENDING_AUTH"}
@@ -176,7 +176,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
             raise HTTPException(404, "job not found")
         if not can_read_job(request, job_id, job["owner_id"]):
             raise HTTPException(403, "owner authorization required")
-        return {"job_id": job_id, "status": job["status"], "input_sha256": job["input_sha256"], "behavior_status": "UNKNOWN", "temporal_ema": "DISABLED", "track_id": "UNVERIFIED", "artifacts": [dict(x) for x in artifacts]}
+        return {"job_id": job_id, "status": job["status"], "input_sha256": job["input_sha256"], "behavior_status": "LIMITED_EXPERT_ASSISTED_RECOMMENDATION", "temporal_ema": "DISABLED", "track_id": "IDENTITY_NOT_BOUND", "artifacts": [dict(x) for x in artifacts]}
 
     @app.get("/api/v1/jobs/{job_id}/segments")
     def get_segments(job_id: str, request: Request) -> dict:
@@ -187,7 +187,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
             raise HTTPException(404, "job not found")
         if not can_read_job(request, job_id, job["owner_id"]):
             raise HTTPException(403, "owner authorization required")
-        return {"job_id": job_id, "status": job["status"], "segments": [json.loads(row["segment_json"]) for row in rows], "behavior_status": "UNKNOWN", "interpretation": "FRAME_OBSERVATION_AND_REFERENCE_SIMILARITY_ONLY"}
+        return {"job_id": job_id, "status": job["status"], "segments": [json.loads(row["segment_json"]) for row in rows], "behavior_status": "LIMITED_EXPERT_ASSISTED_RECOMMENDATION", "interpretation": "POSE_OBSERVATION_AND_REFERENCE_SIMILARITY_ONLY"}
 
     @app.get("/api/v1/jobs/{job_id}/segments/{segment_id}")
     def get_segment(job_id: str, segment_id: str, request: Request) -> dict:

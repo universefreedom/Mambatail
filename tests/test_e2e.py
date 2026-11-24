@@ -51,7 +51,7 @@ def test_browser_api_db_gallery_e2e(tmp_path: Path) -> None:
     assert payload["execution_mode"] == "CACHED_RETRIEVAL_E2E_PASS"
     assert len(payload["results"]) == 5
     assert payload["results"][0]["similarity_or_distance"] == 1.0
-    assert payload["results"][0]["query_behavior_status"] == "UNKNOWN"
+    assert payload["results"][0]["query_behavior_status"] == "LIMITED_EXPERT_ASSISTED_RECOMMENDATION"
 
 
 def test_input_guards(tmp_path: Path) -> None:
@@ -82,6 +82,6 @@ def test_video_upload_streaming_guards_and_owner_scope(tmp_path: Path) -> None:
     segments = client.get(f"/api/v1/jobs/{job_id}/segments")
     assert segments.status_code == 200
     assert segments.json()["segments"] == []
-    assert segments.json()["behavior_status"] == "UNKNOWN"
+    assert segments.json()["behavior_status"] == "LIMITED_EXPERT_ASSISTED_RECOMMENDATION"
     assert other.get(f"/api/v1/jobs/{job_id}/segments").status_code == 403
     assert client.get(f"/api/v1/jobs/{job_id}/segments/SEG_0000").status_code == 404

@@ -8,4 +8,4 @@ Offline-first 16-slide Korean presentation. Serve this repository over HTTP and 
 - Third-party assets retain their own licenses
 - Speaker notes are public and contain no secrets
 
-The presentation is not a live inference engine. Scientific status remains `SCIENTIFIC_NO_PROMOTION`, L3 `UNKNOWN`, L4 `DISABLED`.
+The presentation is not a live inference engine. It presents pose measurement, Fuzzy observability, and cosine-based similar-reference retrieval only as a limited expert-assisted recommendation. Scientific status remains `SCIENTIFIC_NO_PROMOTION`; diagnosis and clinical claims are disabled.

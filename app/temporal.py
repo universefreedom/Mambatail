@@ -7,7 +7,7 @@ from typing import Any
 import numpy as np
 
 
-RULE_VERSION = "FRAME_OBSERVATION_FUZZY_V2_IDENTITY_GATED"
+RULE_VERSION = "POSE_OBSERVABILITY_FUZZY_V3_IDENTITY_GATED"
 
 
 def _ramp_down(value: float, full_until: float, zero_at: float) -> float:
@@ -48,20 +48,7 @@ def _pose_features(npz_path: Path) -> dict[str, Any]:
         points = skeletons[slot, frame]
         selected.append(points)
         valid_ratios.append(float(np.mean(points[:, 2] > 0.12)))
-    changes = []
-    for previous, current in zip(selected, selected[1:]):
-        valid = (previous[:, 2] > 0.12) & (current[:, 2] > 0.12)
-        if not np.any(valid):
-            continue
-        extent = np.ptp(current[valid, :2], axis=0)
-        diagonal = float(np.linalg.norm(extent))
-        if diagonal <= 1e-6:
-            continue
-        displacement = np.linalg.norm(current[valid, :2] - previous[valid, :2], axis=1)
-        changes.append(float(np.median(displacement) / diagonal))
     coverage = float(np.mean(valid_ratios)) if valid_ratios else 0.0
-    magnitude = float(np.median(changes)) if changes else None
-    variation = float(np.std(changes)) if changes else None
     representative = selected[len(selected) // 2] if selected else None
     thumbnail = None
     if representative is not None:
@@ -78,55 +65,42 @@ def _pose_features(npz_path: Path) -> dict[str, Any]:
             ]
     return {
         "valid_joint_ratio": coverage,
-        "normalized_pose_change_median": magnitude,
-        "normalized_pose_change_std": variation,
-        "valid_change_pairs": len(changes),
+        "normalized_pose_change_median": None,
+        "normalized_pose_change_std": None,
+        "valid_change_pairs": 0,
+        "motion_measurement_reason": "IDENTITY_NOT_BOUND_ACROSS_FRAMES",
         "selection_policy": "HIGHEST_DETECTOR_SCORE_SLOT_PER_FRAME",
-        "subject_identity_authority": "UNVERIFIED",
+        "subject_identity_authority": "IDENTITY_NOT_BOUND",
         "query_pose_thumbnail": {"schema": "AP10K_NATIVE17", "coordinates": thumbnail, "authority": "QUERY_OBSERVATION_VISUALIZATION", "normalization": "VALID_JOINT_BBOX_MAX_AXIS"} if thumbnail else None,
     }
 
 
 def _fuzzy(features: dict[str, Any]) -> dict[str, Any]:
-    value = features["normalized_pose_change_median"]
     coverage = features["valid_joint_ratio"]
-    missing = []
-    identity = features.get("subject_identity_authority", "UNVERIFIED")
-    if value is None:
-        missing.append("normalized_pose_change_median")
     memberships = {
-        "motion_low": None if value is None else _ramp_down(value, 0.01, 0.04),
-        "motion_moderate": None if value is None else _triangle(value, 0.01, 0.04, 0.08),
-        "motion_high": None if value is None else _ramp_up(value, 0.04, 0.08),
-        "coverage_sufficient": _ramp_up(coverage, 0.35, 0.75),
+        "observability_low": _ramp_down(coverage, 0.25, 0.55),
+        "observability_moderate": _triangle(coverage, 0.25, 0.60, 0.90),
+        "observability_high": _ramp_up(coverage, 0.60, 0.90),
     }
-    if coverage < 0.5:
-        category = "OBSERVATION_INSUFFICIENT"
-        explanation = "유효 관절 관측률이 0.5 미만이어서 움직임 수준을 요약하지 않습니다."
-    elif value is None:
-        category = "OBSERVATION_INSUFFICIENT"
-        explanation = "연속 유효 관절 쌍이 없어 포즈 변화량을 계산하지 못했습니다."
-    else:
-        category = max(("POSE_VARIATION_LOW", "POSE_VARIATION_MODERATE", "POSE_VARIATION_HIGH"), key=lambda key: memberships[key.replace("POSE_VARIATION_", "motion_").lower()])
-        explanation = "실제 관절 좌표 변화량에 기술 설계 소속함수를 적용한 관측 변화 범주입니다. 행동 확률이 아니며 전문가가 원영상과 함께 검토하는 보조 계측입니다."
+    category = max(("POSE_OBSERVABILITY_LOW", "POSE_OBSERVABILITY_MODERATE", "POSE_OBSERVABILITY_HIGH"), key=lambda key: memberships[key.replace("POSE_OBSERVABILITY_", "observability_").lower()])
+    explanation = "실제 유효 관절 관측률에 기술 설계 소속함수를 적용한 포즈 관찰 가능성입니다. 행동 확률이 아니며 제한적 전문가 보조 추천에 사용합니다."
     return {
-        "rule_id": "POSE_VARIATION_MEMBERSHIP_WITH_COVERAGE_AND_IDENTITY_GATE",
+        "rule_id": "POSE_OBSERVABILITY_MEMBERSHIP_WITH_IDENTITY_GATE",
         "rule_version": RULE_VERSION,
         "membership_design": {
-            "motion_low": "left_shoulder(full<=0.01, zero>=0.04)",
-            "motion_moderate": "triangle(0.01, 0.04, 0.08)",
-            "motion_high": "right_shoulder(zero<=0.04, full>=0.08)",
-            "coverage_sufficient": "right_shoulder(zero<=0.35, full>=0.75)",
+            "observability_low": "left_shoulder(full<=0.25, zero>=0.55)",
+            "observability_moderate": "triangle(0.25, 0.60, 0.90)",
+            "observability_high": "right_shoulder(zero<=0.60, full>=0.90)",
             "authority": "TECHNICAL_DESIGN_NOT_EXPERT_VALIDATED",
         },
         "memberships": memberships,
         "input_features": features,
-        "missing_features": missing,
+        "missing_features": ["identity_bound_motion_measurement"],
         "output_category": category,
         "explanation_text": explanation,
         "probability": None,
-        "interpretation_scope": "FRAME_LEVEL_POSE_VARIATION_MEASUREMENT" if identity != "VERIFIED_TRACK" else "VERIFIED_TRACK_POSE_VARIATION_MEASUREMENT",
-        "identity_caveat": "프레임별 최고 검출 점수 슬롯이며 동일 개체 추적은 검증되지 않았습니다." if identity != "VERIFIED_TRACK" else None,
+        "interpretation_scope": "POSE_OBSERVABILITY_LIMITED_EXPERT_ASSISTANCE",
+        "identity_caveat": "프레임 간 동일 개체 결속이 없으므로 속도·변위·행동 지속시간은 산출하지 않습니다.",
     }
 
 
@@ -154,14 +128,14 @@ def build_segments(payload: dict[str, Any], reference_metadata: dict[str, dict[s
         segments.append({
             "segment_id": f"SEG_{window_id:04d}", "start_frame": int(window["start_frame"]), "end_frame": int(window["end_frame"]),
             "start_time_sec": start_sec, "end_time_sec": end_sec, "time_authority": "APPROXIMATE_FROM_DECODED_FRAME_INDEX_AND_REPORTED_FPS",
-            "subject_identity_authority": "UNVERIFIED", "valid_pose_frames": int(window["detected_frames"]),
-            "clip_encoded_frames": 1 if record else 0, "clip_sampling_status": "SAMPLED" if record else "NOT_SAMPLED", "evidence_quality": "OBSERVED_FRAME_FEATURES_IDENTITY_UNVERIFIED",
+            "subject_identity_authority": "IDENTITY_NOT_BOUND", "valid_pose_frames": int(window["detected_frames"]),
+            "clip_encoded_frames": 1 if record else 0, "clip_sampling_status": "SAMPLED" if record else "NOT_SAMPLED", "evidence_quality": "OBSERVED_FRAME_FEATURES_IDENTITY_NOT_BOUND",
             "pose_observation": features, "clip_reference_hits": hits,
             "similarity_summary": {"mean_top3_cosine": float(np.mean([x["similarity"] for x in hits])) if hits else None, "semantics": "REFERENCE_SIMILARITY_NOT_BEHAVIOR_PROBABILITY"},
             "fuzzy_observation": fuzzy, "source_warning": warning,
             "review_assistance": f"{fuzzy['explanation_text']} CLIP Top-3는 유사도 기반 전문가 검토 보조 추천이며 참고 라벨은 확정 행동이 아닙니다.",
             "assistance_status": "MEASUREMENT_AND_SIMILARITY_BASED_EXPERT_REVIEW_ASSISTANCE",
-            "behavior_status": "UNKNOWN", "l4": "DISABLED",
+            "behavior_status": "LIMITED_EXPERT_ASSISTED_RECOMMENDATION", "l4": "DISABLED",
             "model_versions": payload["model_sha"], "missing_evidence": ["TRACK_ID_AUTHORITY", "EXPERT_BEHAVIOR_GROUND_TRUTH"] + ([] if hits else ["SEGMENT_CLIP_SAMPLE"]),
         })
     return segments

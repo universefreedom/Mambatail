@@ -39,7 +39,7 @@ Open `http://127.0.0.1:8765`. API documentation is available at `/docs`.
 
 The cached search remains `CACHED_RETRIEVAL_E2E`, not fresh image inference. In the verified local private runtime, two distinct CC BY 4.0 videos completed real decode, Dog detector inference, RTMPose native17 inference, full-frame RN50 `encode_image` sampling, frozen 51-reference retrieval, H.264 encode/readback, SQLite persistence, and Edge playback. Model assets and the site-specific runner remain excluded from this public repository and must be mounted by an authorized operator.
 
-The verified scope is frame-only: `TEMPORAL_EMA_DISABLED`, `TRACK_ID_UNVERIFIED`, and behavior `UNKNOWN`. Reference labels are never copied into a definitive uploaded-video behavior claim.
+The verified scope is frame observation and reference similarity only: `TEMPORAL_EMA_DISABLED`, `IDENTITY_NOT_BOUND`, and `LIMITED_EXPERT_ASSISTED_RECOMMENDATION`. Reference labels are never copied into a definitive uploaded-video behavior claim, and identity-bound velocity is not computed.
 
 Public anonymous video upload is disabled by default. Set `MAMBATAIL_PUBLIC_UPLOAD_ENABLED=1` only behind an appropriate authentication and abuse-control boundary; the local validation environment enabled it explicitly.
 
@@ -54,6 +54,10 @@ The current public suite has three API/DB/security tests. Real model and browser
 ## Deployment
 
 The public read-only demonstration is live at `https://freedom49032.kr` through the existing dashboard-managed `mambatail-web` Tunnel. Root, health, case listing, and cached retrieval have been verified externally. Anonymous video upload is disabled by default until least-privilege authentication is implemented, so public upload-to-playback E2E is not claimed. Local real-video E2E evidence remains separate from this public deployment gate. See [Cloudflare deployment](docs/deployment-cloudflare.md).
+
+- Main demonstration: https://freedom49032.kr/
+- API-independent 220-frame pose demonstration: https://demo.freedom49032.kr/
+- Offline-first reveal.js presentation: https://freedom49032.kr/presentation/
 
 ## Evidence scope
 

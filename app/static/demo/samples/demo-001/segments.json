@@ -12,11 +12,11 @@
       "time_authority": "UI_APPROXIMATION_FROM_FROZEN_PTS_FIELD_NOT_EVENT_TIMESTAMP",
       "pose_observation": {
         "valid_joint_ratio": 0.5127450980392156,
-        "normalized_pose_change_median": 0.0844853839332466,
-        "normalized_pose_change_std": 0.2230646767197062,
-        "valid_change_pairs": 33,
+        "normalized_pose_change_median": null,
+        "normalized_pose_change_std": null,
+        "valid_change_pairs": 0,
         "selection_policy": "FROZEN_SINGLE_SKELETON_PER_FRAME_NO_TRACK_AUTHORITY",
-        "subject_identity_authority": "UNVERIFIED",
+        "subject_identity_authority": "IDENTITY_NOT_BOUND",
         "query_pose_thumbnail": {
           "schema": "AP10K_NATIVE17",
           "coordinates": [
@@ -109,29 +109,26 @@
           "authority": "QUERY_OBSERVATION_VISUALIZATION",
           "normalization": "VALID_JOINT_BBOX_MAX_AXIS",
           "source_frame_index": 30
-        }
+        },
+        "motion_measurement_reason": "IDENTITY_NOT_BOUND_ACROSS_FRAMES"
       },
       "fuzzy_observation": {
-        "rule_id": "POSE_VARIATION_MEMBERSHIP_WITH_COVERAGE_AND_IDENTITY_GATE",
-        "rule_version": "FRAME_OBSERVATION_FUZZY_V2_IDENTITY_GATED",
-        "memberships": {
-          "motion_low": 0.0,
-          "motion_moderate": 0.0,
-          "motion_high": 1.0,
-          "coverage_sufficient": 0.40686274509803916
-        },
-        "membership_design_authority": "TECHNICAL_DESIGN_NOT_EXPERT_VALIDATED",
-        "output_category": "POSE_VARIATION_HIGH",
-        "explanation_text": "실제 관절 좌표 변화량의 기술 설계 소속도에 따른 관측 변화 범주이며 전문가 검토 보조 계측입니다.",
-        "probability": null,
-        "interpretation_scope": "FRAME_LEVEL_POSE_VARIATION_MEASUREMENT",
-        "identity_caveat": "동일 개체 추적은 검증되지 않았습니다."
+        "rule_id": "STATIC_SAMPLE_FUZZY_NOT_COMPUTED",
+        "rule_version": "TASK3_DISPLAY_ADAPTER_V1",
+        "memberships": {},
+        "output_category": "POSE_OBSERVABILITY_MEASURED_FUZZY_NOT_COMPUTED",
+        "explanation_text": "유효 관절 관측률은 표시하지만 이 독립 정적 표본에는 TASK 2 Fuzzy 소속도를 새로 만들지 않습니다.",
+        "missing_features": [
+          "TASK2_STATIC_SAMPLE_FUZZY_MEMBERSHIP"
+        ],
+        "probability": null
       },
       "clip_sampling_status": "NOT_SAMPLED",
       "clip_reference_hits": [],
       "source_warning": "NO_SEGMENT_CLIP_EMBEDDING",
-      "evidence_quality": "FROZEN_POSE_OBSERVATION_IDENTITY_UNVERIFIED",
-      "behavior_status": "UNKNOWN"
+      "evidence_quality": "FROZEN_POSE_OBSERVATION_IDENTITY_NOT_BOUND",
+      "behavior_status": "LIMITED_EXPERT_ASSISTED_RECOMMENDATION",
+      "review_assistance": "실제 220프레임 포즈의 관절 관측률만 표시하는 제한적 전문가 보조 추천입니다."
     },
     {
       "segment_id": "SEG_0001",
@@ -142,11 +139,11 @@
       "time_authority": "UI_APPROXIMATION_FROM_FROZEN_PTS_FIELD_NOT_EVENT_TIMESTAMP",
       "pose_observation": {
         "valid_joint_ratio": 0.9911764705882353,
-        "normalized_pose_change_median": 0.020614370036651782,
-        "normalized_pose_change_std": 0.06399595408446328,
-        "valid_change_pairs": 59,
+        "normalized_pose_change_median": null,
+        "normalized_pose_change_std": null,
+        "valid_change_pairs": 0,
         "selection_policy": "FROZEN_SINGLE_SKELETON_PER_FRAME_NO_TRACK_AUTHORITY",
-        "subject_identity_authority": "UNVERIFIED",
+        "subject_identity_authority": "IDENTITY_NOT_BOUND",
         "query_pose_thumbnail": {
           "schema": "AP10K_NATIVE17",
           "coordinates": [
@@ -239,29 +236,26 @@
           "authority": "QUERY_OBSERVATION_VISUALIZATION",
           "normalization": "VALID_JOINT_BBOX_MAX_AXIS",
           "source_frame_index": 90
-        }
+        },
+        "motion_measurement_reason": "IDENTITY_NOT_BOUND_ACROSS_FRAMES"
       },
       "fuzzy_observation": {
-        "rule_id": "POSE_VARIATION_MEMBERSHIP_WITH_COVERAGE_AND_IDENTITY_GATE",
-        "rule_version": "FRAME_OBSERVATION_FUZZY_V2_IDENTITY_GATED",
-        "memberships": {
-          "motion_low": 0.6461876654449407,
-          "motion_moderate": 0.3538123345550594,
-          "motion_high": 0.0,
-          "coverage_sufficient": 1.0
-        },
-        "membership_design_authority": "TECHNICAL_DESIGN_NOT_EXPERT_VALIDATED",
-        "output_category": "POSE_VARIATION_LOW",
-        "explanation_text": "실제 관절 좌표 변화량의 기술 설계 소속도에 따른 관측 변화 범주이며 전문가 검토 보조 계측입니다.",
-        "probability": null,
-        "interpretation_scope": "FRAME_LEVEL_POSE_VARIATION_MEASUREMENT",
-        "identity_caveat": "동일 개체 추적은 검증되지 않았습니다."
+        "rule_id": "STATIC_SAMPLE_FUZZY_NOT_COMPUTED",
+        "rule_version": "TASK3_DISPLAY_ADAPTER_V1",
+        "memberships": {},
+        "output_category": "POSE_OBSERVABILITY_MEASURED_FUZZY_NOT_COMPUTED",
+        "explanation_text": "유효 관절 관측률은 표시하지만 이 독립 정적 표본에는 TASK 2 Fuzzy 소속도를 새로 만들지 않습니다.",
+        "missing_features": [
+          "TASK2_STATIC_SAMPLE_FUZZY_MEMBERSHIP"
+        ],
+        "probability": null
       },
       "clip_sampling_status": "NOT_SAMPLED",
       "clip_reference_hits": [],
       "source_warning": "NO_SEGMENT_CLIP_EMBEDDING",
-      "evidence_quality": "FROZEN_POSE_OBSERVATION_IDENTITY_UNVERIFIED",
-      "behavior_status": "UNKNOWN"
+      "evidence_quality": "FROZEN_POSE_OBSERVATION_IDENTITY_NOT_BOUND",
+      "behavior_status": "LIMITED_EXPERT_ASSISTED_RECOMMENDATION",
+      "review_assistance": "실제 220프레임 포즈의 관절 관측률만 표시하는 제한적 전문가 보조 추천입니다."
     },
     {
       "segment_id": "SEG_0002",
@@ -272,11 +266,11 @@
       "time_authority": "UI_APPROXIMATION_FROM_FROZEN_PTS_FIELD_NOT_EVENT_TIMESTAMP",
       "pose_observation": {
         "valid_joint_ratio": 0.9990196078431373,
-        "normalized_pose_change_median": 0.02245944294170226,
-        "normalized_pose_change_std": 0.10173934775126484,
-        "valid_change_pairs": 59,
+        "normalized_pose_change_median": null,
+        "normalized_pose_change_std": null,
+        "valid_change_pairs": 0,
         "selection_policy": "FROZEN_SINGLE_SKELETON_PER_FRAME_NO_TRACK_AUTHORITY",
-        "subject_identity_authority": "UNVERIFIED",
+        "subject_identity_authority": "IDENTITY_NOT_BOUND",
         "query_pose_thumbnail": {
           "schema": "AP10K_NATIVE17",
           "coordinates": [
@@ -369,29 +363,26 @@
           "authority": "QUERY_OBSERVATION_VISUALIZATION",
           "normalization": "VALID_JOINT_BBOX_MAX_AXIS",
           "source_frame_index": 150
-        }
+        },
+        "motion_measurement_reason": "IDENTITY_NOT_BOUND_ACROSS_FRAMES"
       },
       "fuzzy_observation": {
-        "rule_id": "POSE_VARIATION_MEMBERSHIP_WITH_COVERAGE_AND_IDENTITY_GATE",
-        "rule_version": "FRAME_OBSERVATION_FUZZY_V2_IDENTITY_GATED",
-        "memberships": {
-          "motion_low": 0.5846852352765913,
-          "motion_moderate": 0.4153147647234087,
-          "motion_high": 0.0,
-          "coverage_sufficient": 1.0
-        },
-        "membership_design_authority": "TECHNICAL_DESIGN_NOT_EXPERT_VALIDATED",
-        "output_category": "POSE_VARIATION_LOW",
-        "explanation_text": "실제 관절 좌표 변화량의 기술 설계 소속도에 따른 관측 변화 범주이며 전문가 검토 보조 계측입니다.",
-        "probability": null,
-        "interpretation_scope": "FRAME_LEVEL_POSE_VARIATION_MEASUREMENT",
-        "identity_caveat": "동일 개체 추적은 검증되지 않았습니다."
+        "rule_id": "STATIC_SAMPLE_FUZZY_NOT_COMPUTED",
+        "rule_version": "TASK3_DISPLAY_ADAPTER_V1",
+        "memberships": {},
+        "output_category": "POSE_OBSERVABILITY_MEASURED_FUZZY_NOT_COMPUTED",
+        "explanation_text": "유효 관절 관측률은 표시하지만 이 독립 정적 표본에는 TASK 2 Fuzzy 소속도를 새로 만들지 않습니다.",
+        "missing_features": [
+          "TASK2_STATIC_SAMPLE_FUZZY_MEMBERSHIP"
+        ],
+        "probability": null
       },
       "clip_sampling_status": "NOT_SAMPLED",
       "clip_reference_hits": [],
       "source_warning": "NO_SEGMENT_CLIP_EMBEDDING",
-      "evidence_quality": "FROZEN_POSE_OBSERVATION_IDENTITY_UNVERIFIED",
-      "behavior_status": "UNKNOWN"
+      "evidence_quality": "FROZEN_POSE_OBSERVATION_IDENTITY_NOT_BOUND",
+      "behavior_status": "LIMITED_EXPERT_ASSISTED_RECOMMENDATION",
+      "review_assistance": "실제 220프레임 포즈의 관절 관측률만 표시하는 제한적 전문가 보조 추천입니다."
     },
     {
       "segment_id": "SEG_0003",
@@ -402,11 +393,11 @@
       "time_authority": "UI_APPROXIMATION_FROM_FROZEN_PTS_FIELD_NOT_EVENT_TIMESTAMP",
       "pose_observation": {
         "valid_joint_ratio": 0.9926470588235294,
-        "normalized_pose_change_median": 0.024152054811132063,
-        "normalized_pose_change_std": 0.10320557194836817,
-        "valid_change_pairs": 39,
+        "normalized_pose_change_median": null,
+        "normalized_pose_change_std": null,
+        "valid_change_pairs": 0,
         "selection_policy": "FROZEN_SINGLE_SKELETON_PER_FRAME_NO_TRACK_AUTHORITY",
-        "subject_identity_authority": "UNVERIFIED",
+        "subject_identity_authority": "IDENTITY_NOT_BOUND",
         "query_pose_thumbnail": {
           "schema": "AP10K_NATIVE17",
           "coordinates": [
@@ -499,29 +490,26 @@
           "authority": "QUERY_OBSERVATION_VISUALIZATION",
           "normalization": "VALID_JOINT_BBOX_MAX_AXIS",
           "source_frame_index": 200
-        }
+        },
+        "motion_measurement_reason": "IDENTITY_NOT_BOUND_ACROSS_FRAMES"
       },
       "fuzzy_observation": {
-        "rule_id": "POSE_VARIATION_MEMBERSHIP_WITH_COVERAGE_AND_IDENTITY_GATE",
-        "rule_version": "FRAME_OBSERVATION_FUZZY_V2_IDENTITY_GATED",
-        "memberships": {
-          "motion_low": 0.5282648396289312,
-          "motion_moderate": 0.4717351603710688,
-          "motion_high": 0.0,
-          "coverage_sufficient": 1.0
-        },
-        "membership_design_authority": "TECHNICAL_DESIGN_NOT_EXPERT_VALIDATED",
-        "output_category": "POSE_VARIATION_LOW",
-        "explanation_text": "실제 관절 좌표 변화량의 기술 설계 소속도에 따른 관측 변화 범주이며 전문가 검토 보조 계측입니다.",
-        "probability": null,
-        "interpretation_scope": "FRAME_LEVEL_POSE_VARIATION_MEASUREMENT",
-        "identity_caveat": "동일 개체 추적은 검증되지 않았습니다."
+        "rule_id": "STATIC_SAMPLE_FUZZY_NOT_COMPUTED",
+        "rule_version": "TASK3_DISPLAY_ADAPTER_V1",
+        "memberships": {},
+        "output_category": "POSE_OBSERVABILITY_MEASURED_FUZZY_NOT_COMPUTED",
+        "explanation_text": "유효 관절 관측률은 표시하지만 이 독립 정적 표본에는 TASK 2 Fuzzy 소속도를 새로 만들지 않습니다.",
+        "missing_features": [
+          "TASK2_STATIC_SAMPLE_FUZZY_MEMBERSHIP"
+        ],
+        "probability": null
       },
       "clip_sampling_status": "NOT_SAMPLED",
       "clip_reference_hits": [],
       "source_warning": "NO_SEGMENT_CLIP_EMBEDDING",
-      "evidence_quality": "FROZEN_POSE_OBSERVATION_IDENTITY_UNVERIFIED",
-      "behavior_status": "UNKNOWN"
+      "evidence_quality": "FROZEN_POSE_OBSERVATION_IDENTITY_NOT_BOUND",
+      "behavior_status": "LIMITED_EXPERT_ASSISTED_RECOMMENDATION",
+      "review_assistance": "실제 220프레임 포즈의 관절 관측률만 표시하는 제한적 전문가 보조 추천입니다."
     }
   ]
 }
